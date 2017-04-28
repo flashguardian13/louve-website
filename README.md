@@ -1,24 +1,35 @@
-# README
+# Rhiannon Louve Website
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A website for a brilliant fantasy author, powered by Rails and werewolves riding unicorns.
 
-Things you may want to cover:
+## License
 
-* Ruby version
+All source code is available under the MIT license.
 
-* System dependencies
+## Getting started
 
-* Configuration
+To get started with the app, clone the repo and then install the needed gems:
 
-* Database creation
+```
+$ bundle install --without production
+```
 
-* Database initialization
+Next, migrate the database:
 
-* How to run the test suite
+```
+$ rails db:migrate
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Finally, run the test suite to verify that everything is working correctly:
 
-* Deployment instructions
+```
+$ rails test
+```
 
-* ...
+If the test suite passes, you'll be ready to run the app in a local server:
+
+```
+$ rails server
+```
+
+Special thanks go to Michael Hartl, the author of the [*Ruby on Rails Tutorial* book](http://www.railstutorial.org/book).
