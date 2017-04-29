@@ -1,0 +1,102 @@
+/* === Color Scheme === */
+
+$header-bg-color:   #93c;
+$header-text-color: #003;
+
+$body-bg-color:     #204;
+$body-text-color:   #cae;
+
+$link-bg-color:           #c6f;
+$link-text-color:         #000;
+$hover-link-bg-color:     #c9f;
+$hover-link-text-color:   #609;
+$active-link-bg-color:    $header-bg-color;
+$active-link-text-color:  $header-text-color;
+
+
+/* === Layout === */
+
+* {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+
+html {
+  font-family: Georgia, Serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Impact, Charcoal, sans-serif;
+}
+
+header, footer {
+  background-color: $body-bg-color;
+  color: $header-text-color;
+}
+
+.banner {
+  background-color: $body-bg-color;
+  color: $header-bg-color;
+  text-align: center;
+  border: 10px $header-bg-color solid;
+  margin: 10px;
+  #logo {
+    font-family: Impact, Charcoal, sans-serif;
+    font-size: 6em;
+    text-decoration: none;
+    &:active {
+      cursor: default;
+    }
+  }
+  h2 {
+    font-family: Georgia, Serif;
+  }
+}
+
+.navbar {
+  background-color: $header-bg-color;
+  margin: 10px;
+}
+
+nav {
+  ul {
+    text-align: center;
+    li {
+      padding: 10px;
+      display: inline-block;
+      a {
+        font-family: "Arial Black", Gadget, sans-serif;
+        background-color: $link-bg-color;
+        color: $link-text-color;
+        padding: 10px;
+        text-decoration: none;
+        &:hover {
+          background-color: $hover-link-bg-color;
+          color: $hover-link-text-color;
+        }
+        &:active {
+          background-color: $active-link-bg-color;
+          color: $active-link-text-color;
+          cursor: default;
+        }
+      }
+    }
+  }
+}
+
+body {
+  background-color: $body-bg-color;
+  color: $body-text-color;
+}
+
+.content {
+  margin: 10px;
+}
+
+.copyright {
+  font-family: Tahoma, Geneva, sans-serif;
+  background-color: $header-bg-color;
+  text-align: center;
+  margin: 10px;
+}
