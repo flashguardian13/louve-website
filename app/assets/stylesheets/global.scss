@@ -14,6 +14,10 @@ $nav-hover-link-text-color:   #50a;
 $nav-active-link-bg-color:    $header-bg-color;
 $nav-active-link-text-color:  $header-text-color;
 
+$link-text-color:         #44f;
+$hover-link-text-color:   #88f;
+$active-link-text-color:  #66f;
+
 $max-app-width: 1024px;
 
 
@@ -42,6 +46,16 @@ h1, h2, h3, h4, h5, h6 {
   font-family: Impact, Charcoal, sans-serif;
   text-align: center;
   margin-bottom: 20px;
+}
+
+a {
+  color: $link-text-color;
+  &:hover {
+    color: $hover-link-text-color;
+  }
+  &:active {
+    color: $active-link-text-color;
+  }
 }
 
 .banner {
