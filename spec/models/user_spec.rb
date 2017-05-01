@@ -6,7 +6,8 @@ RSpec.describe User, type: :model do
       name: "Example User",
       email: "user@example.com",
       password_digest: 'not a real digest',
-      is_admin: false
+      is_admin: false,
+      password: 'one two three four'
     }
     @user = User.new(data)
 
@@ -14,7 +15,8 @@ RSpec.describe User, type: :model do
       name: "Another Example User",
       email: "user2@example.com",
       password_digest: 'still not a real digest',
-      is_admin: true
+      is_admin: true,
+      password: 'a2d4G6j8'
     }
     @duplicate_user = User.new(data)
   end
@@ -161,10 +163,127 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#password' do
+    it 'is present' do
+      @user.password = '          '
+      expect(@user).not_to be_valid
+    end
+
+    it 'should be between 8 and 32 characters' do
+      @user.password = 'a3j4kKlp'
+      expect(@user).to be_valid
+
+      @user.password = 'a3j4kKlp' * 4
+      expect(@user).to be_valid
+
+      @user.password = 'a3j4kKl'
+      expect(@user).not_to be_valid
+
+      @user.password = 'a3j4kKlp' * 4 + 'z'
+      expect(@user).not_to be_valid
+    end
+
+    it 'allows passphrases' do
+      @user.password = 'correct horse battery staple'
+      expect(@user).to be_valid
+    end
+
+    it 'does not allow commonly used passwords' do
+      bad_passwords = %w(
+        1q2w3e4r
+        1q2w3e4r5t
+        18atcskd2w
+        3rjs1la7qe
+      )
+      bad_passwords.each do |bad_password|
+        @user.password = bad_password
+        expect(@user).not_to be_valid, "Bad password accepted: #{@user.password}"
+      end
+    end
+
+    it 'does not allow a single dictionary word, forward or backward' do
+      bad_passwords = [
+        "colleague", "reputed", "collaborator", "unqualified",
+        "auction", "pompous", "assistance", "asterisk",
+        "marginal", "announce", "warring", "registrar",
+        "fission", "masculinity", "decentralization", "prospectus",
+        'butterfly', 'football', 'swordfish', 'password'
+      ]
+      bad_passwords.each do |bad_password|
+        @user.password = bad_password
+        expect(@user).not_to be_valid
+        @user.password = bad_password.reverse
+        expect(@user).not_to be_valid, "Bad password accepted: #{@user.password}"
+      end
+    end
+
+    it 'does not allow dictionary words followed or preceded by a single character' do
+      bad_passwords = [
+        "bulletin", "trailer", "fledgling", "flannel",
+        "gentrification", "hideout", "completely", "hackneyed",
+        "bladder", "rambunctious", "explicable", "tutorial",
+        "christen", "reformer", "compared", "outlook"
+      ]
+      bad_passwords.each do |bad_password|
+        @user.password = bad_password
+        expect(@user).not_to be_valid
+        @user.password = bad_password.reverse
+        expect(@user).not_to be_valid, "Bad password accepted: #{@user.password}"
+      end
+    end
+
+    it 'does not allow pattern-based passwords' do
+      bad_passwords = %w(
+        aaaaaaaa
+        abababab
+        abcdabcd
+        abcdefgh
+        zxywvuts
+
+        12345678
+        12341234
+        12121212
+        11111111
+        123456789
+        12345678
+        11111111
+        1234567890
+        123123123
+        987654321
+        12344321
+        66666666
+        77777777
+        87654321
+        55555555
+
+        abcd1234
+        1234abcd
+
+        qwertyui
+        asdfghjk
+        asdffdsa
+        zxcvbnmz
+        zxcvbnm,
+        zaq1zaq1
+        qwertyuiop
+        1234qwer
+      )
+      bad_passwords.each do |bad_password|
+        @user.password = bad_password
+        expect(@user).not_to be_valid, "Bad password accepted: #{@user.password}"
+      end
+    end
+
+    it 'cannot contain the username' do
+      @user.password = 'Example User is awesome'
+      expect(@user).not_to be_valid
+    end
+  end
+
   describe '#is_admin' do
-    #~ it 'is present' do
-      #~ @user.is_admin = nil
-      #~ expect(@user).not_to be_valid
-    #~ end
+    #~ # #~ it 'is present' do
+      #~ # #~ @user.is_admin = nil
+      #~ # #~ expect(@user).not_to be_valid
+    #~ # #~ end
   end
 end
