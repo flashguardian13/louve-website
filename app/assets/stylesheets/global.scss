@@ -156,3 +156,47 @@ body {
   text-align: center;
   color: $banner-text-color;
 }
+
+form {
+  text-align: center;
+  label {
+    text-align: left;
+  }
+  div {
+    margin: 10px;
+  }
+  input[type="text"], input[type="email"], input[type="password"] {
+    padding: 5px;
+    min-width: $max-app-width / 4;
+  }
+  input[type="text"] {
+    padding: 5px;
+    min-width: $max-app-width / 4;
+  }
+  input[type="submit"] {
+    min-width: auto;
+    margin: 10px;
+    padding: 10px;
+  }
+}
+
+#error_explanation {
+  text-align: left;
+  margin: 10px;
+  padding: 10px;
+  border: 5px ridge #f69;
+  background-color: rgba(128, 0, 64, 0.25);
+  color: #c06;
+}
+
+.alert {
+  text-align: left;
+  margin: 10px;
+  padding: 10px;
+}
+
+.alert-success {
+  border: 5px ridge #9f6;
+  background-color: rgba(64, 128, 0, 0.25);
+  color: #6c0;
+}
