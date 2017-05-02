@@ -7,5 +7,9 @@ Rails.application.routes.draw do
   get '/links',         to: 'static_pages#links'
   get '/contact',       to: 'static_pages#contact'
 
+  get  '/login',   to: 'sessions#new'
+  post '/login',   to: 'sessions#create'
+  get  '/logout',  to: 'sessions#destroy'
+
   resources :users
 end
