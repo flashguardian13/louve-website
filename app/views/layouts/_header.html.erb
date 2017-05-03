@@ -4,7 +4,10 @@
     <h2>Author, Dreamer, Spiritual Futurist</h2>
   </div>
   <% if logged_in? %>
-    <div class="center">You are signed in as <%= current_user.name %>.</div>
+    <div class="center">
+      You are signed in as <%= current_user.name %>.
+      <%= link_to "Sign out", logout_path %>
+    </div>
   <% end %>
   <div class="navbar">
     <%= render 'layouts/nav_links' %>
