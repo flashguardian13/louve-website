@@ -1,0 +1,31 @@
+<%= form_for(@user) do |f| %>
+  <%= render 'shared/error_messages', object: @user %>
+
+  <div>
+    <%= f.label :name %><br/>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :email %><br/>
+    <%= f.email_field :email %>
+  </div>
+
+  <div>
+    <%= f.label :password, 'Password' %><br/>
+    <%= f.password_field :password %>
+  </div>
+
+  <% if confirm %>
+    <div>
+      <%= f.label :password_confirmation, "Confirm Password" %><br/>
+      <%= f.password_field :password_confirmation %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.submit yield(:submit_text) %>
+  </div>
+
+  <%= link_to 'Cancel', yield(:cancel_path) %>
+<% end %>

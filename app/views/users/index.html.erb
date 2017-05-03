@@ -1,16 +1,27 @@
 <% provide(:title, 'Users') %>
 
 <table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Type</th>
+  </tr>
   <% @users.each do |user| %>
     <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Type</th>
-    </tr>
-    <tr>
-      <td><%= user.name %></td>
+      <td><%= link_to user.name, user_path(user) %></td>
       <td><%= user.email %></td>
       <td><%= user.is_admin ? 'Admin' : 'User' %></td>
+      <% if current_user.is_admin || user == current_user %>
+        <td>
+          <%= link_to 'Edit', edit_user_path(user) %>
+          <% if user.id != 1 %>
+            <%= link_to 'Delete', user_path(user), method: :delete,
+                      data: {confirm: "Really delete user #{user.name}? This cannot be undone!"} %>
+          <% end %>
+        </td>
+      <% end %>
     </tr>
   <% end %>
-<table>
+</table>
+
+<%= link_to 'Create new user', new_user_path %>

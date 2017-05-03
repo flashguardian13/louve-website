@@ -1,0 +1,7 @@
+<% provide(:title, 'Edit User') %>
+<% provide(:submit_text, 'Save') %>
+<% provide(:cancel_path, user_path(@user)) %>
+
+<h1>Edit User</h1>
+
+<%= render 'form', { confirm: false } %>

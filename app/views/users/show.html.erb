@@ -6,3 +6,6 @@
 <div>
   Email: <%= @user.email %>
 </div>
+
+<%= link_to 'Edit profile', edit_user_path(@user) %><br/>
+<%= link_to 'Back to all users', users_path %>

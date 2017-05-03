@@ -1,31 +1,7 @@
 <% provide(:title, 'Sign up') %>
+<% provide(:submit_text, 'Sign up') %>
+<% provide(:cancel_path, users_path) %>
 
 <h1>Sign up</h1>
 
-<%= form_for(@user) do |f| %>
-  <%= render 'shared/error_messages' %>
-
-  <div>
-    <%= f.label :name %><br/>
-    <%= f.text_field :name %>
-  </div>
-
-  <div>
-    <%= f.label :email %><br/>
-    <%= f.email_field :email %>
-  </div>
-
-  <div>
-    <%= f.label :password %><br/>
-    <%= f.password_field :password %>
-  </div>
-
-  <div>
-    <%= f.label :password_confirmation, "Confirm Password" %><br/>
-    <%= f.password_field :password_confirmation %>
-  </div>
-
-  <div>
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+<%= render 'form', { confirm: true } %>

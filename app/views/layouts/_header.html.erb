@@ -3,6 +3,9 @@
     <%= link_to "Rhiannon Louve", root_path, id: "logo" %>
     <h2>Author, Dreamer, Spiritual Futurist</h2>
   </div>
+  <% if logged_in? %>
+    <div class="center">You are signed in as <%= current_user.name %>.</div>
+  <% end %>
   <div class="navbar">
     <%= render 'layouts/nav_links' %>
   </div>
