@@ -155,6 +155,15 @@ body {
   max-width: $max-app-width / 3;
 }
 
+@mixin v-align {
+  top: 50%;
+  transform:          translateY(-50%);
+  -ms-transform:      translateY(-50%); /* IE */
+  -moz-transform:     translateY(-50%); /* Firefox */
+  -webkit-transform:  translateY(-50%); /* Safari and Chrome */
+  -o-transform:       translateY(-50%);
+}
+
 .copyright {
   font-family: Tahoma, Geneva, sans-serif;
   text-align: center;
@@ -182,6 +191,11 @@ form {
     margin: 10px;
     padding: 10px;
   }
+  textarea {
+    padding: 5px;
+    min-width: $max-app-width / 2;
+    min-height: 100px;
+  }
 }
 
 #error_explanation {
@@ -203,4 +217,36 @@ form {
   border: 5px ridge #9f6;
   background-color: rgba(64, 128, 0, 0.25);
   color: #6c0;
+}
+
+.post-container {
+  .post-header {
+    padding: 10px;
+    .post-title {
+      float: left;
+      font-family: Impact, Charcoal, sans-serif;
+      font-size: 2em;
+    }
+    .post-date {
+      text-align: right;
+      float: right;
+    }
+  }
+  .post-content {
+    clear: both;
+    margin: 10px;
+  }
+}
+
+// http://nicolasgallagher.com/micro-clearfix-hack/
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+// For IE 6/7 only, Include this rule to trigger hasLayout and contain floats.
+.clearfix {
+  *zoom: 1;
 }
