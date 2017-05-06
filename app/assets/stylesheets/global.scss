@@ -193,9 +193,14 @@ form {
   }
   textarea {
     padding: 5px;
-    min-width: $max-app-width / 2;
-    min-height: 100px;
+    min-width: $max-app-width * 0.45;
+    min-height: 300px;
   }
+}
+
+.blog-form, .blog-preview {
+  min-width: $max-app-width * 0.5;
+  max-width: $max-app-width * 0.5;
 }
 
 #error_explanation {

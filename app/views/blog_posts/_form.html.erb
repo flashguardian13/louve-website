@@ -1,19 +1,29 @@
-<%= form_for(@post) do |f| %>
-  <%= render 'shared/error_messages', object: @post %>
+<table>
+  <tr>
+    <td class="blog-form">
+      <%= form_for(@post) do |f| %>
+        <%= render 'shared/error_messages', object: @post %>
 
-  <div>
-    <%= f.label :title %><br/>
-    <%= f.text_field :title %>
-  </div>
+        <div>
+          <%= f.label :title %><br/>
+          <%= f.text_field :title %>
+        </div>
 
-  <div>
-    <%= f.label :content %><br/>
-    <%= f.text_area :content %>
-  </div>
+        <div>
+          <%= f.label :content %><br/>
+          <%= f.text_area :content %>
+        </div>
 
-  <div>
-    <%= f.submit submit_text %>
-  </div>
+        <div>
+          <%= f.submit submit_text %>
+        </div>
 
-  <%= link_to 'Cancel', blog_posts_path %>
-<% end %>
+        <%= link_to 'Cancel', blog_posts_path %>
+      <% end %>
+    </td>
+
+    <td class="blog-preview">
+      <%= render 'post', object: @post %>
+    </td>
+  </tr>
+</table>

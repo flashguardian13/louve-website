@@ -5,22 +5,5 @@
 <% end %>
 
 <% @posts.sort { |a, b| b.created_at <=> a.created_at }.each do |post| %>
-  <div class="post-container">
-    <div class="post-header clearfix">
-      <div class="post-title">
-        <%= post.title %>
-      </div>
-      <div class="post-date">
-        <%= post.created_at.strftime('%A, %B %e, %Y, %l:%M:%S %p') %><br/>
-        <% if logged_in? && current_user.is_admin %>
-          <%= link_to 'Edit', edit_blog_post_path(post) %>
-          <%= link_to 'Delete', blog_post_path(post), method: :delete,
-            data: { confirm: 'Really delete this post?' } %>
-        <% end %>
-      </div>
-    </div>
-    <div class="post-content">
-      <%= post.content.bbcode_to_html.html_safe rescue post.content %>
-    </div>
-  </div>
+  <%= render 'post', object: post %>
 <% end %>
