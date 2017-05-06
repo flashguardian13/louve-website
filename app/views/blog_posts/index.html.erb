@@ -19,8 +19,8 @@
         <% end %>
       </div>
     </div>
-    <p class="post-content">
-      <%= post.content %>
-    </p>
+    <div class="post-content">
+      <%= post.content.bbcode_to_html.html_safe rescue post.content %>
+    </div>
   </div>
 <% end %>

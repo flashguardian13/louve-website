@@ -30,4 +30,18 @@ RSpec.describe BlogPost, type: :model do
     @blog_post.content = '                  '
     expect(@blog_post).not_to be_valid
   end
+
+  it 'cannot contain invalid bbcode' do
+    @blog_post.content = "Here's [url='.']a link to this page[/url]."
+    expect(@blog_post).not_to be_valid
+
+    @blog_post.content = "[b]These [i]tags are not nested[/b] properly[/i]."
+    expect(@blog_post).not_to be_valid
+
+    @blog_post.content = "An open [b]tag with no closure."
+    expect(@blog_post).not_to be_valid
+
+    @blog_post.content = "A closing tag with no[/b] opening."
+    expect(@blog_post).not_to be_valid
+  end
 end
