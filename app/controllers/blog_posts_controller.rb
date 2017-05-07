@@ -11,7 +11,7 @@ class BlogPostsController < ApplicationController
 
   def create
     @post = BlogPost.new(post_params)
-    if @post.save
+    if params[:commit] != 'Preview' && @post.save
       redirect_to action: :index, refresh: true
     else
       render 'new'
@@ -24,7 +24,10 @@ class BlogPostsController < ApplicationController
 
   def update
     @post = BlogPost.find(params[:id])
-    if @post.update_attributes(post_params)
+    if params[:commit] == 'Preview'
+      @post.assign_attributes(post_params)
+      render 'edit'
+    elsif @post.update_attributes(post_params)
       redirect_to action: :index, refresh: true
     else
       render 'edit'
