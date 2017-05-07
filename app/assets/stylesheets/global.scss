@@ -247,6 +247,10 @@ form {
   }
 }
 
+.post-container-invisible {
+  border: 3px dotted #0ff;
+}
+
 // http://nicolasgallagher.com/micro-clearfix-hack/
 .clearfix:before, .clearfix:after {
   content: " ";

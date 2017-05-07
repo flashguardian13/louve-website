@@ -1,9 +1,13 @@
 <% provide(:title, 'Blog') %>
 
 <% if logged_in? && current_user.is_admin %>
+  <div>
+    Posts surrounded by a <span class="post-container-invisible">dotted cyan border</span> are not publicly visible.
+  </div>
   <%= link_to 'Create New Post', new_blog_post_path %>
 <% end %>
 
 <% @posts.sort { |a, b| b.created_at <=> a.created_at }.each do |post| %>
+  <% next unless post.is_visible || (logged_in? && current_user.is_admin) %>
   <%= render 'post', object: post %>
 <% end %>

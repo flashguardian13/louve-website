@@ -44,4 +44,12 @@ RSpec.describe BlogPost, type: :model do
     @blog_post.content = "A closing tag with no[/b] opening."
     expect(@blog_post).not_to be_valid
   end
+
+  it 'can be hidden or visible' do
+    @blog_post.is_visible = true
+    expect(@blog_post).to be_valid
+
+    @blog_post.is_visible = false
+    expect(@blog_post).to be_valid
+  end
 end

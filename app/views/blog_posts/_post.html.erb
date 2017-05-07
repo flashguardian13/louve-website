@@ -1,4 +1,4 @@
-<div class="post-container">
+<div class="post-container <%= object.is_visible ? '' : 'post-container-invisible' %>">
   <div class="post-header clearfix">
     <div class="post-title">
       <%= object.title %>
@@ -7,6 +7,11 @@
       <% if object.persisted? %>
         <%= object.created_at.strftime('%A, %B %e, %Y, %l:%M:%S %p') %><br/>
         <% if logged_in? && current_user.is_admin %>
+          <% if object.is_visible %>
+            <%= link_to 'Hide', blog_post_path(object, blog_post: {is_visible: false}), method: :patch %>
+          <% else %>
+            <%= link_to 'Show', blog_post_path(object, blog_post: {is_visible: true}), method: :patch %>
+          <% end %>
           <%= link_to 'Edit', edit_blog_post_path(object) %>
           <%= link_to 'Delete', blog_post_path(object), method: :delete,
             data: { confirm: 'Really delete this post?' } %>
