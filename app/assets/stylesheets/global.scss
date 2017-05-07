@@ -18,6 +18,8 @@ $link-text-color:         #46f;
 $hover-link-text-color:   #9af;
 $active-link-text-color:  #79e;
 
+$button-border-color:     #dbf;
+
 $max-app-width: 1024px;
 
 
@@ -190,6 +192,22 @@ form {
     min-width: auto;
     margin: 10px;
     padding: 10px;
+    cursor: pointer;
+    border: 3px outset;
+    border-color: $button-border-color;
+    background-color: $nav-link-bg-color;
+    color: $nav-link-text-color;
+    font-weight: bold;
+    &:hover {
+      background-color: $nav-hover-link-bg-color;
+      color: $nav-hover-link-text-color;
+    }
+    &:active {
+      background-color: $nav-link-bg-color;
+      color: $nav-active-link-text-color;
+      cursor: default;
+      border-style: inset;
+    }
   }
   textarea {
     padding: 5px;
