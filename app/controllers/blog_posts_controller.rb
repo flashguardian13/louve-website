@@ -1,5 +1,5 @@
 class BlogPostsController < ApplicationController
-  before_action :redirect_unless_admin
+  before_action :redirect_unless_admin, except: [:index]
 
   def index
     @posts = BlogPost.all
@@ -11,9 +11,8 @@ class BlogPostsController < ApplicationController
 
   def create
     @post = BlogPost.new(post_params)
-    if @post.save
-      @posts = BlogPost.all
-      render 'index'
+    if params[:commit] != 'Preview' && @post.save
+      redirect_to action: :index, refresh: true
     else
       render 'new'
     end
@@ -25,8 +24,11 @@ class BlogPostsController < ApplicationController
 
   def update
     @post = BlogPost.find(params[:id])
-    if @post.update_attributes(post_params)
-      redirect_to 'index'
+    if params[:commit] == 'Preview'
+      @post.assign_attributes(post_params)
+      render 'edit'
+    elsif @post.update_attributes(post_params)
+      redirect_to action: :index, refresh: true
     else
       render 'edit'
     end
@@ -43,6 +45,6 @@ class BlogPostsController < ApplicationController
   private
 
   def post_params
-    params.require(:blog_post).permit(:title, :content)
+    params.require(:blog_post).permit(:title, :content, :is_visible)
   end
 end

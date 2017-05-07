@@ -14,9 +14,11 @@ $nav-hover-link-text-color:   #50a;
 $nav-active-link-bg-color:    $header-bg-color;
 $nav-active-link-text-color:  $header-text-color;
 
-$link-text-color:         #44f;
-$hover-link-text-color:   #88f;
-$active-link-text-color:  #66f;
+$link-text-color:         #46f;
+$hover-link-text-color:   #9af;
+$active-link-text-color:  #79e;
+
+$button-border-color:     #dbf;
 
 $max-app-width: 1024px;
 
@@ -190,12 +192,33 @@ form {
     min-width: auto;
     margin: 10px;
     padding: 10px;
+    cursor: pointer;
+    border: 3px outset;
+    border-color: $button-border-color;
+    background-color: $nav-link-bg-color;
+    color: $nav-link-text-color;
+    font-weight: bold;
+    &:hover {
+      background-color: $nav-hover-link-bg-color;
+      color: $nav-hover-link-text-color;
+    }
+    &:active {
+      background-color: $nav-link-bg-color;
+      color: $nav-active-link-text-color;
+      cursor: default;
+      border-style: inset;
+    }
   }
   textarea {
     padding: 5px;
-    min-width: $max-app-width / 2;
-    min-height: 100px;
+    min-width: $max-app-width * 0.45;
+    min-height: 300px;
   }
+}
+
+.blog-form, .blog-preview {
+  min-width: $max-app-width * 0.5;
+  max-width: $max-app-width * 0.5;
 }
 
 #error_explanation {
@@ -220,6 +243,10 @@ form {
 }
 
 .post-container {
+  background-color: rgba(64, 64, 64, 0.30);
+  padding-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   .post-header {
     padding: 10px;
     .post-title {
@@ -236,6 +263,10 @@ form {
     clear: both;
     margin: 10px;
   }
+}
+
+.post-container-invisible {
+  border: 3px dotted #0ff;
 }
 
 // http://nicolasgallagher.com/micro-clearfix-hack/
