@@ -2,7 +2,7 @@
 
 <% if logged_in? && current_user.is_admin %>
   <div>
-    Posts surrounded by a <span class="post-container-invisible">dotted cyan border</span> are not publicly visible.
+    Posts surrounded by a <span class="container-invisible">dotted cyan border</span> are not publicly visible.
   </div>
   <%= link_to 'Create New Post', new_blog_post_path %>
 <% end %>

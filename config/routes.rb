@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
+  resources :external_links
   root 'static_pages#home'
 
   get '/about',         to: 'static_pages#about'
   get '/publications',  to: 'static_pages#publications'
   get '/blogs',         to: 'blog_posts#index'
-  get '/links',         to: 'static_pages#links'
+  get '/links',         to: 'external_links#index'
   get '/contact',       to: 'static_pages#contact'
 
   get  '/login',   to: 'sessions#new'

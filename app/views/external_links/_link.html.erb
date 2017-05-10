@@ -1,0 +1,22 @@
+<div class="link-container <%= object.is_visible ? '' : 'container-invisible' %>">
+  <div class="link-header clearfix">
+    <div class="link-title">
+      <%= link_to object.title, object.url %>
+    </div>
+    <div class="link-admin">
+      <% if object.persisted? && logged_in? && current_user.is_admin %>
+        <% if object.is_visible %>
+          <%= link_to 'Hide', external_link_path(object, external_link: {is_visible: false}), method: :patch %>
+        <% else %>
+          <%= link_to 'Show', external_link_path(object, external_link: {is_visible: true}), method: :patch %>
+        <% end %>
+        <%= link_to 'Edit', edit_external_link_path(object) %>
+        <%= link_to 'Delete', external_link_path(object), method: :delete,
+                              data: { confirm: 'Really delete this link?' } %>
+      <% end %>
+    </div>
+  </div>
+  <div class="link-description">
+    <%= object.description.bbcode_to_html.html_safe rescue object.description %>
+  </div>
+</div>

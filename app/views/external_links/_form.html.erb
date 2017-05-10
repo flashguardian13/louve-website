@@ -1,0 +1,40 @@
+<table>
+  <tr>
+    <td class="link-form">
+      <%= form_for(@link) do |f| %>
+        <%= render 'shared/error_messages', object: @link %>
+
+        <div>
+          <%= f.label :url %><br/>
+          <%= f.text_field :url %>
+        </div>
+
+        <div>
+          <%= f.label :title %><br/>
+          <%= f.text_field :title %>
+        </div>
+
+        <div>
+          <%= f.label :description %><br/>
+          <%= f.text_area :description %>
+        </div>
+
+        <div>
+          <%= f.check_box :is_visible %>
+          <%= f.label :is_visible, 'Make this link publicly visible' %>
+        </div>
+
+        <div>
+          <%= f.submit 'Preview' %>
+          <%= f.submit submit_text %>
+        </div>
+
+        <%= link_to 'Cancel', links_path %>
+      <% end %>
+    </td>
+
+    <td class="link-preview">
+      <%= render 'link', object: @link %>
+    </td>
+  </tr>
+</table>
