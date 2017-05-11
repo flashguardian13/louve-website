@@ -2,16 +2,16 @@ class ExternalLinksController < ApplicationController
   before_action :redirect_unless_admin, except: [:index]
 
   def index
-    @links = ExternalLink.all
+    @contents = model_class.all
   end
 
   def new
-    @link = ExternalLink.new
+    @content = model_class.new
   end
 
   def create
-    @link = ExternalLink.new(link_params)
-    if params[:commit] != 'Preview' && @link.save
+    @content = model_class.new(content_params)
+    if params[:commit] != 'Preview' && @content.save
       redirect_to action: :index, refresh: true
     else
       render 'new'
@@ -19,15 +19,15 @@ class ExternalLinksController < ApplicationController
   end
 
   def edit
-    @link = ExternalLink.find(params[:id])
+    @content = model_class.find(params[:id])
   end
 
   def update
-    @link = ExternalLink.find(params[:id])
+    @content = model_class.find(params[:id])
     if params[:commit] == 'Preview'
-      @link.assign_attributes(link_params)
+      @content.assign_attributes(content_params)
       render 'edit'
-    elsif @link.update_attributes(link_params)
+    elsif @content.update_attributes(content_params)
       redirect_to action: :index, refresh: true
     else
       render 'edit'
@@ -35,16 +35,20 @@ class ExternalLinksController < ApplicationController
   end
 
   def destroy
-    link = ExternalLink.find(params[:id])
-    link.destroy
+    content = model_class.find(params[:id])
+    content.destroy
 
-    @links = ExternalLink.all
+    @contents = model_class.all
     render 'index'
   end
 
   private
 
-  def link_params
+  def content_params
     params.require(:external_link).permit(:url, :title, :description, :is_visible)
+  end
+
+  def model_class
+    controller_name.classify.constantize
   end
 end

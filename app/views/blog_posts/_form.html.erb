@@ -1,8 +1,8 @@
 <table>
   <tr>
     <td class="blog-form">
-      <%= form_for(@post) do |f| %>
-        <%= render 'shared/error_messages', object: @post %>
+      <%= form_for(@content) do |f| %>
+        <%= render 'shared/error_messages', object: @content %>
 
         <div>
           <%= f.label :title %><br/>
@@ -29,7 +29,7 @@
     </td>
 
     <td class="blog-preview">
-      <%= render 'post', object: @post %>
+      <%= render 'post', object: @content %>
     </td>
   </tr>
 </table>

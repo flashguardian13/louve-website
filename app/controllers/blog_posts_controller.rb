@@ -2,16 +2,16 @@ class BlogPostsController < ApplicationController
   before_action :redirect_unless_admin, except: [:index]
 
   def index
-    @posts = BlogPost.all
+    @contents = model_class.all
   end
 
   def new
-    @post = BlogPost.new
+    @content = model_class.new
   end
 
   def create
-    @post = BlogPost.new(post_params)
-    if params[:commit] != 'Preview' && @post.save
+    @content = model_class.new(content_params)
+    if params[:commit] != 'Preview' && @content.save
       redirect_to action: :index, refresh: true
     else
       render 'new'
@@ -19,15 +19,15 @@ class BlogPostsController < ApplicationController
   end
 
   def edit
-    @post = BlogPost.find(params[:id])
+    @content = model_class.find(params[:id])
   end
 
   def update
-    @post = BlogPost.find(params[:id])
+    @content = model_class.find(params[:id])
     if params[:commit] == 'Preview'
-      @post.assign_attributes(post_params)
+      @content.assign_attributes(content_params)
       render 'edit'
-    elsif @post.update_attributes(post_params)
+    elsif @content.update_attributes(content_params)
       redirect_to action: :index, refresh: true
     else
       render 'edit'
@@ -35,16 +35,20 @@ class BlogPostsController < ApplicationController
   end
 
   def destroy
-    post = BlogPost.find(params[:id])
-    post.destroy
+    content = model_class.find(params[:id])
+    content.destroy
 
-    @posts = BlogPost.all
+    @contents = model_class.all
     render 'index'
   end
 
   private
 
-  def post_params
+  def content_params
     params.require(:blog_post).permit(:title, :content, :is_visible)
+  end
+
+  def model_class
+    controller_name.classify.constantize
   end
 end

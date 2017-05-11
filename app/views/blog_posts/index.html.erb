@@ -7,7 +7,7 @@
   <%= link_to 'Create New Post', new_blog_post_path %>
 <% end %>
 
-<% @posts.sort { |a, b| b.created_at <=> a.created_at }.each do |post| %>
+<% @contents.sort { |a, b| b.created_at <=> a.created_at }.each do |post| %>
   <% next unless post.is_visible || logged_in_as_admin? %>
   <%= render 'post', object: post %>
 <% end %>

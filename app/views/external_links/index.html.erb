@@ -7,7 +7,7 @@
   <%= link_to 'Create New Link', new_external_link_path %>
 <% end %>
 
-<% @links.sort { |a, b| b.created_at <=> a.created_at }.each do |link| %>
+<% @contents.sort { |a, b| b.created_at <=> a.created_at }.each do |link| %>
   <% next unless link.is_visible || logged_in_as_admin? %>
   <%= render 'link', object: link %>
 <% end %>
