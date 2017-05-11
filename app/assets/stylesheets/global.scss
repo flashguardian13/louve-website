@@ -1,29 +1,4 @@
-/* === Color Scheme === */
-
-$header-bg-color:   rgba(112, 48, 207, 0.6);
-$header-text-color: #003;
-
-$banner-text-color: #dbf;
-
-$body-text-color:   #baf;
-
-$nav-link-bg-color:           #b9e;
-$nav-link-text-color:         #306;
-$nav-hover-link-bg-color:     #dbf;
-$nav-hover-link-text-color:   #50a;
-$nav-active-link-bg-color:    $header-bg-color;
-$nav-active-link-text-color:  $header-text-color;
-
-$link-text-color:         #46f;
-$hover-link-text-color:   #9af;
-$active-link-text-color:  #79e;
-
-$button-border-color:     #dbf;
-
-$max-app-width: 1024px;
-
-
-/* === Layout === */
+@import 'constants';
 
 html {
   font-family: Georgia, Serif;
@@ -216,11 +191,6 @@ form {
   }
 }
 
-.blog-form, .blog-preview, .link-form, .link-preview {
-  min-width: $max-app-width * 0.5;
-  max-width: $max-app-width * 0.5;
-}
-
 #error_explanation {
   text-align: left;
   margin: 10px;
@@ -240,54 +210,6 @@ form {
   border: 5px ridge #9f6;
   background-color: rgba(64, 128, 0, 0.25);
   color: #6c0;
-}
-
-.post-container {
-  background-color: rgba(64, 64, 64, 0.30);
-  padding-bottom: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  .post-header {
-    padding: 10px;
-    .post-title {
-      float: left;
-      font-family: Impact, Charcoal, sans-serif;
-      font-size: 2em;
-    }
-    .post-date {
-      text-align: right;
-      float: right;
-    }
-  }
-  .post-content {
-    clear: both;
-    margin: 10px;
-  }
-}
-
-.link-container {
-  background-color: rgba(64, 64, 64, 0.30);
-  padding-bottom: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  .link-header {
-    padding: 10px;
-    .link-title {
-      a {
-        float: left;
-        font-family: Impact, Charcoal, sans-serif;
-        font-size: 2em;
-      }
-    }
-    .link-admin {
-      float: right;
-    }
-  }
-  .link-description {
-    clear: both;
-    margin: 10px;
-    margin-left: 40px;
-  }
 }
 
 .container-invisible {

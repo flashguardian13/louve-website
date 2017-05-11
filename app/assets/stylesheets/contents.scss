@@ -1,0 +1,7 @@
+@import 'constants';
+
+.content-form, .content-preview {
+  min-width: $max-app-width * 0.4;
+  max-width: $max-app-width * 0.5;
+}
+

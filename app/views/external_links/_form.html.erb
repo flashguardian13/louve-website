@@ -1,6 +1,6 @@
 <table>
   <tr>
-    <td class="link-form">
+    <td class="content-form">
       <%= form_for(@content) do |f| %>
         <%= render 'shared/error_messages', object: @content %>
 
@@ -33,7 +33,7 @@
       <% end %>
     </td>
 
-    <td class="link-preview">
+    <td class="content-preview">
       <%= render 'link', object: @content %>
     </td>
   </tr>

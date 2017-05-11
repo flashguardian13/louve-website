@@ -1,6 +1,6 @@
 <table>
   <tr>
-    <td class="blog-form">
+    <td class="content-form">
       <%= form_for(@content) do |f| %>
         <%= render 'shared/error_messages', object: @content %>
 
@@ -28,7 +28,7 @@
       <% end %>
     </td>
 
-    <td class="blog-preview">
+    <td class="content-preview">
       <%= render 'post', object: @content %>
     </td>
   </tr>
