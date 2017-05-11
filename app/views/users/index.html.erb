@@ -11,7 +11,7 @@
       <td><%= link_to user.name, user_path(user) %></td>
       <td><%= user.email %></td>
       <td><%= user.is_admin ? 'Admin' : 'User' %></td>
-      <% if current_user.is_admin || user == current_user %>
+      <% if logged_in_as_admin? || user == current_user %>
         <td>
           <%= link_to 'Edit', edit_user_path(user) %>
           <% if user.id != 1 %>

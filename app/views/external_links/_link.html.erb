@@ -4,7 +4,7 @@
       <%= link_to object.title, object.url %>
     </div>
     <div class="link-admin">
-      <% if object.persisted? && logged_in? && current_user.is_admin %>
+      <% if object.persisted? && logged_in_as_admin? %>
         <% if object.is_visible %>
           <%= link_to 'Hide', external_link_path(object, external_link: {is_visible: false}), method: :patch %>
         <% else %>

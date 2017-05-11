@@ -3,6 +3,6 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   def redirect_unless_admin
-    redirect_to root_path unless logged_in? && current_user.is_admin
+    redirect_to root_path unless logged_in_as_admin?
   end
 end

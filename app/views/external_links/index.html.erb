@@ -1,6 +1,6 @@
 <% provide(:title, 'Links') %>
 
-<% if logged_in? && current_user.is_admin %>
+<% if logged_in_as_admin? %>
   <div>
     Links surrounded by a <span class="container-invisible">dotted cyan border</span> are not publicly visible.
   </div>
@@ -8,6 +8,6 @@
 <% end %>
 
 <% @links.sort { |a, b| b.created_at <=> a.created_at }.each do |link| %>
-  <% next unless link.is_visible || (logged_in? && current_user.is_admin) %>
+  <% next unless link.is_visible || logged_in_as_admin? %>
   <%= render 'link', object: link %>
 <% end %>

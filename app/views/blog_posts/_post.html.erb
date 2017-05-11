@@ -6,7 +6,7 @@
     <div class="post-date">
       <% if object.persisted? %>
         <%= object.created_at.strftime('%A, %B %e, %Y, %l:%M:%S %p') %><br/>
-        <% if logged_in? && current_user.is_admin %>
+        <% if logged_in_as_admin? %>
           <% if object.is_visible %>
             <%= link_to 'Hide', blog_post_path(object, blog_post: {is_visible: false}), method: :patch %>
           <% else %>
