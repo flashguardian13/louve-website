@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20170512060641) do
     t.string   "long_description"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.boolean  "is_visible"
   end
 
   create_table "retailers", force: :cascade do |t|
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(version: 20170512060641) do
     t.string   "link"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.boolean  "is_visible"
     t.index ["publication_id"], name: "index_retailers_on_publication_id", using: :btree
   end
 
@@ -56,6 +58,7 @@ ActiveRecord::Schema.define(version: 20170512060641) do
     t.string   "attribution"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.boolean  "is_visible"
     t.index ["publication_id"], name: "index_reviews_on_publication_id", using: :btree
   end
 

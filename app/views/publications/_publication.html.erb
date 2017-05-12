@@ -1,0 +1,38 @@
+<div class="publication-container <%= object.is_visible ? '' : 'container-invisible' %>">
+  <table>
+    <tr>
+      <td>
+        <div class="publication-image image-container">
+          <% if object.image %>
+            <%= image_tag(object.image) %>
+          <% else %>
+            No image found.
+          <% end %>
+        </div>
+        <div class="publication-admin-links">
+          <% if object.persisted? && logged_in_as_admin? %>
+            <% if object.is_visible %>
+              <%= link_to 'Hide', publication_path(object, publication: {is_visible: false}), method: :patch %>
+            <% else %>
+              <%= link_to 'Show', publication_path(object, publication: {is_visible: true}), method: :patch %>
+            <% end %>
+            <%= link_to 'Edit', edit_publication_path(object) %>
+            <%= link_to 'Delete', publication_path(object), method: :delete,
+              data: { confirm: 'Really delete this publication?' } %>
+          <% end %>
+        </div>
+      </td>
+      <td class="publication-content">
+        <div class="publication-title">
+          <%= object.title || 'Title of the Book' %>
+        </div>
+        <div class="publication-short-description">
+          <%= object.short_description.bbcode_to_html.html_safe rescue object.short_description %>
+        </div>
+        <div class="publication-long-description">
+          <%= object.long_description.bbcode_to_html.html_safe rescue object.long_description %>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>

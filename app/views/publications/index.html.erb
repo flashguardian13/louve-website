@@ -1,0 +1,13 @@
+<% provide(:title, 'Publications') %>
+
+<% if logged_in_as_admin? %>
+  <div>
+    Publications surrounded by a <span class="container-invisible">dotted cyan border</span> are not publicly visible.
+  </div>
+  <%= link_to 'Add New Publication', new_publication_path %>
+<% end %>
+
+<% @contents.sort { |a, b| b.created_at <=> a.created_at }.each do |publication| %>
+  <% next unless publication.is_visible || logged_in_as_admin? %>
+  <%= render 'publication', object: publication %>
+<% end %>
