@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :external_links
   root 'static_pages#home'
 
   get '/about',         to: 'static_pages#about'
@@ -14,4 +13,6 @@ Rails.application.routes.draw do
 
   resources :users
   resources :blog_posts
+  resources :external_links
+  resources :publications
 end
