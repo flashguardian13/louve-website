@@ -1,13 +1,8 @@
-class BlogPostValidator < ActiveModel::Validator
+require_relative 'bbcode_validator.rb'
+
+class BlogPostValidator < BBCodeValidator
   def validate(post)
-    if post.content.is_a?(String)
-      errors = post.content.bbcode_check_validity
-      if errors.is_a?(Array) && !errors.empty?
-        post.errors[:content].concat(errors)
-      end
-    else
-      post.errors[:content] << 'Content cannot be anything other than text.'
-    end
+    validate_bbcode(post, :content)
   end
 end
 
