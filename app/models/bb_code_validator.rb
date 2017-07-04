@@ -10,4 +10,3 @@ class BBCodeValidator < ActiveModel::Validator
     end
   end
 end
-

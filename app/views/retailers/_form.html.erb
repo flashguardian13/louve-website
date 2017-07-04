@@ -1,0 +1,31 @@
+<div>
+  <%= form_for [@publication, @content] do |f| %>
+    <%= render 'shared/error_messages', object: @content %>
+
+    <div>
+      <%= f.label :name %><br/>
+      <%= f.text_field :name %>
+    </div>
+
+    <div>
+      <%= f.label :link %><br/>
+      <%= f.text_field :link %>
+    </div>
+
+    <div>
+      <%= f.check_box :is_visible %>
+      <%= f.label :is_visible, 'Make this retailer publicly visible' %>
+    </div>
+
+    <div>
+      <%= f.submit 'Preview' %>
+      <%= f.submit submit_text %>
+    </div>
+
+    <%= link_to 'Cancel', publication_path(@publication) %>
+  <% end %>
+</div>
+
+<div>
+  <%= render 'retailer', object: @content %>
+</div>

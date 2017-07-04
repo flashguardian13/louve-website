@@ -97,4 +97,28 @@ RSpec.describe Publication, type: :model do
     @publication.is_visible = false
     expect(@publication).to be_valid
   end
+
+  it 'can have one or more retailers' do
+    publication = Publication.new(
+      title: 'My Blog Post',
+      image: "foo.png",
+      short_description: "There's not much to say.",
+      long_description: "There's not much to say. Buy my books!"
+    )
+    expect(publication.retailers.length).to eq(0)
+    3.times { publication.retailers.build }
+    expect(publication.retailers.length).to eq(3)
+  end
+
+  it 'can have one or more reviews' do
+    publication = Publication.new(
+      title: 'My Blog Post',
+      image: "foo.png",
+      short_description: "There's not much to say.",
+      long_description: "There's not much to say. Buy my books!"
+    )
+    expect(publication.reviews.length).to eq(0)
+    3.times { publication.reviews.build }
+    expect(publication.reviews.length).to eq(3)
+  end
 end

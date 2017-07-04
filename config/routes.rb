@@ -14,5 +14,8 @@ Rails.application.routes.draw do
   resources :users
   resources :blog_posts
   resources :external_links
-  resources :publications
+  resources :publications do
+    resources :retailers
+    resources :reviews
+  end
 end

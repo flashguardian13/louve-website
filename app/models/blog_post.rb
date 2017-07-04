@@ -1,5 +1,3 @@
-require_relative 'bbcode_validator.rb'
-
 class BlogPostValidator < BBCodeValidator
   def validate(post)
     validate_bbcode(post, :content)
