@@ -1,0 +1,18 @@
+<div class="review <%= object.is_visible ? '' : 'container-invisible' %>">
+  <div "review-quote">
+    <%= object.quote %>
+  </div>
+  <div "review-attribution">
+    -- <%= object.attribution %>
+  </div>
+  <% if object.persisted? && logged_in_as_admin? %>
+    <% if object.is_visible %>
+      <%= link_to 'Hide', publication_review_path(object.publication, object, review: {is_visible: false}), method: :patch %>
+    <% else %>
+      <%= link_to 'Show', publication_review_path(object.publication, object, review: {is_visible: true}), method: :patch %>
+    <% end %>
+    <%= link_to 'Edit', edit_publication_review_path(object.publication, object) %>
+    <%= link_to 'Delete', publication_review_path(object.publication, object), method: :delete,
+      data: { confirm: 'Really delete this review?' } %>
+  <% end %>
+</div>

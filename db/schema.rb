@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170510085142) do
+ActiveRecord::Schema.define(version: 20170512060641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,9 +32,34 @@ ActiveRecord::Schema.define(version: 20170510085142) do
     t.boolean  "is_visible"
   end
 
-  create_table "games", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "publications", force: :cascade do |t|
+    t.string   "title"
+    t.string   "image"
+    t.string   "short_description"
+    t.string   "long_description"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.boolean  "is_visible"
+  end
+
+  create_table "retailers", force: :cascade do |t|
+    t.integer  "publication_id"
+    t.string   "name"
+    t.string   "link"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.boolean  "is_visible"
+    t.index ["publication_id"], name: "index_retailers_on_publication_id", using: :btree
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "publication_id"
+    t.string   "quote"
+    t.string   "attribution"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.boolean  "is_visible"
+    t.index ["publication_id"], name: "index_reviews_on_publication_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

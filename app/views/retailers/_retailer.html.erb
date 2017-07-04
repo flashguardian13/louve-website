@@ -1,0 +1,15 @@
+<span class="retailer <%= object.is_visible ? '' : 'container-invisible' %>">
+  <%= link_to object.name, object.link %>
+  <% if object.persisted? && logged_in_as_admin? %>
+    (
+    <% if object.is_visible %>
+      <%= link_to 'Hide', publication_retailer_path(object.publication, object, retailer: {is_visible: false}), method: :patch %>
+    <% else %>
+      <%= link_to 'Show', publication_retailer_path(object.publication, object, retailer: {is_visible: true}), method: :patch %>
+    <% end %>
+    <%= link_to 'Edit', edit_publication_retailer_path(object.publication, object) %>
+    <%= link_to 'Delete', publication_retailer_path(object.publication, object), method: :delete,
+      data: { confirm: 'Really delete this retailer?' } %>
+    )
+  <% end %>
+</span>

@@ -1,0 +1,30 @@
+// Place all the styles related to the Publications controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'contents';
+
+.publication-container {
+  background-color: rgba(64, 64, 64, 0.30);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  .publication-image {
+  }
+  .publication-admin-links {
+    text-align: center;
+  }
+  .publication-content {
+    .publication-title {
+      margin: 10px;
+      font-family: Impact, Charcoal, sans-serif;
+      font-size: 2em;
+      text-align: center;
+    }
+    .publication-short-description {
+      margin: 10px;
+    }
+    .publication-long-description {
+      margin: 10px;
+    }
+  }
+}
