@@ -1,7 +1,7 @@
 @import 'constants';
 
 html {
-  font-family: Georgia, Serif;
+  font-family: 'Times New Roman', Serif;
   background-image: url(cloudy-bg-16-color.png);
   background-color: rgba(16, 0, 32, 0.8);
   background-blend-mode: darken;
@@ -20,7 +20,7 @@ p {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Impact, Charcoal, sans-serif;
+  font-family: 'Times New Roman', Serif;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -81,10 +81,13 @@ nav {
       padding: 10px 0px;
       display: inline-block;
       a {
-        font-family: "Arial Black", Gadget, sans-serif;
+        border-radius: 20px;
+        font-family: 'Times New Roman', Serif;
+        font-size: 1.5em;
         background-color: $nav-link-bg-color;
         color: $nav-link-text-color;
-        padding: 10px;
+        padding: 5px 10px;
+        margin: 5px;
         text-decoration: none;
         &:hover {
           background-color: $nav-hover-link-bg-color;
@@ -141,8 +144,21 @@ body {
   -o-transform:       translateY(-50%);
 }
 
+// Derived from https://codepen.io/anon/pen/GrIuh
+@mixin box-shadow($top, $left, $blur, $color, $inset:"") {
+  box-shadow:         $top $left $blur $color #{$inset};
+  -ms-box-shadow:     $top $left $blur $color #{$inset};
+  -moz-box-shadow:    $top $left $blur $color #{$inset};
+  -webkit-box-shadow: $top $left $blur $color #{$inset};
+  -o-box-shadow:      $top $left $blur $color #{$inset};
+}
+
+.drop-shadow {
+  @include box-shadow(10px, 10px, 7px, $drop-shadow-color);
+}
+
 .copyright {
-  font-family: Tahoma, Geneva, sans-serif;
+  font-family: 'Times New Roman', Serif;
   text-align: center;
   color: $banner-text-color;
 }
