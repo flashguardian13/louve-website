@@ -2,6 +2,7 @@
 
 html {
   font-family: 'Times New Roman', Serif;
+  font-size: 14pt;
   background: image-url('pagebg_02_01_75_quality.jpg') repeat center center;
 }
 
@@ -29,7 +30,6 @@ p {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Times New Roman', Serif;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -91,7 +91,6 @@ nav {
       display: inline-block;
       a {
         border-radius: 20px;
-        font-family: 'Times New Roman', Serif;
         font-size: 1.5em;
         background-color: $nav-link-bg-color;
         color: $nav-link-text-color;
@@ -167,7 +166,6 @@ body {
 }
 
 .copyright {
-  font-family: 'Times New Roman', Serif;
   text-align: center;
   color: $banner-text-color;
 }
