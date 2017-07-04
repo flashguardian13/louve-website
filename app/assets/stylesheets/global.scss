@@ -13,7 +13,7 @@ header, footer {
 }
 
 header, .content, footer {
-  background-color: rgba(16, 0, 32, 0.6);
+  background-color: $content-background-color;
 }
 
 * {
@@ -49,7 +49,7 @@ a {
 }
 
 .banner {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: $banner-background-color;
   background-blend-mode: darken;
   text-align: center;
   border: 10px $header-bg-color solid;
