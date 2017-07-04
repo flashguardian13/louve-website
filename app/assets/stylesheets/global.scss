@@ -2,9 +2,18 @@
 
 html {
   font-family: 'Times New Roman', Serif;
-  background-image: url(cloudy-bg-16-color.png);
-  background-color: rgba(16, 0, 32, 0.8);
-  background-blend-mode: darken;
+  background: url(pagebg_02_01_75_quality.jpg) repeat center center;
+}
+
+header, footer {
+  min-width: $min-app-width;
+  max-width: $max-app-width;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+header, .content, footer {
+  background-color: rgba(16, 0, 32, 0.6);
 }
 
 * {
@@ -45,8 +54,8 @@ a {
   text-align: center;
   border: 10px $header-bg-color solid;
   border-radius: 50px;
-  margin: 10px;
-  min-width: 650px;
+  margin-bottom: 10px;
+  min-width: $min-app-width;
   max-width: $max-app-width;
   margin-left: auto;
   margin-right: auto;
@@ -68,7 +77,7 @@ a {
 
 .navbar {
   background-color: $header-bg-color;
-  min-width: 650px;
+  min-width: $min-app-width;
   max-width: $max-app-width;
   margin-left: auto;
   margin-right: auto;
@@ -109,7 +118,7 @@ body {
 
 .content {
   margin: 10px;
-  min-width: 650px;
+  min-width: $min-app-width;
   max-width: $max-app-width;
   margin-left: auto;
   margin-right: auto;
