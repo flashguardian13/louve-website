@@ -1,46 +1,15 @@
 <% provide(:title, "Home") %>
 
-<table>
-  <tr>
-    <td>
-      <div class="image-container">
-        <%= image_tag "test-werewolf-icon.png", class: 'drop-shadow' %>
-      </div>
-    </td>
-    <td>
-      <p>Rhiannon Louve is a writer of science fiction, fantasy, urban fantasy, and steampunk fiction, as well as contemporary Pagan thea/ology and table top role-playing games. She is co-founder of the SpiralWorks service organization, and holds an MA in Applied Theology. In addition, Rhiannon does vocals, keyboards, and some songwriting for the geek metal band, Megatherium.</p>
-    </td>
-  <tr>
-</table>
+<% if @blog_post %>
+  <%= render 'blog_posts/post', object: @blog_post %>
+<% end %>
 
-<table>
-  <tr>
-    <td class="three-column">
-      <p>The Gears and Levers 1 anthology, edited by bestselling author Phyllis Irene Radford, contains a score of excellent steampunk short stories. Rhiannon's co-authors include a Hugo winner, Hugo and Nebula nominees, an awesome indie filmmaker, several novelists, and more!</p>
-      <p>Rhiannon's own story, A Rumor, a Blade, and a Discourteous Intrusion features a mysterious time-traveler, a crystal dagger, a diesel-punk ogre, and all takes place during a birthday ball at the Duke's country estate. George Walker, one of Rhiannon's esteemed co-authors, described Rhiannon's story on Goodreads as, "an action-packed story that reminded me of Girl Genius." High praise indeed! Thanks George!</p>
-    </td>
+<% if @publication %>
+  <%= render 'publications/publication', object: @publication %>
+<% end %>
 
-    <td class="three-column">
-      <div class="image-container">
-        <%= image_tag "d1c523a762efab7ae88f7fe135266153.jpg", class: "scale-to-fit drop-shadow" %>
-      </div>
-    </td>
-
-    <td class="three-column">
-      <p>Gears and Levers is available for purchase through several vendors, including:</p>
-      <ul>
-        <li><a href='#'>Link</a></li>
-        <li><a href='#'>Link</a></li>
-        <li><a href='#'>Link</a></li>
-      </ul>
-      <p>E-book price is $3.99, and print is $14.95</p>
-      <p>... and I get royalties so, Please Buy It! :-p</p>
-    </td>
-  </tr>
-</table>
-
-<div>
-  <h2>Latest News</h2>
-  <p>My Gears and Levers sequel story has been accepted for Gears and Levers III! This time, Evelina of Grafton fights time-traveling villains in Senegal!</p>
-  <p>Check out my latest LiveJournal for the highlights of my fun at Gear Con!</p>
-</div>
+<% if @blog_post.nil? && @publication.nil? %>
+  <div>
+    Watch this space for the latest news and updates regarding the writing adventures of Rhiannon Louve!
+  </div>
+<% end %>
