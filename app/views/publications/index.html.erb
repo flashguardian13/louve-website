@@ -7,7 +7,7 @@
   <%= link_to 'Add New Publication', new_publication_path %>
 <% end %>
 
-<% @contents.sort { |a, b| b.created_at <=> a.created_at }.each do |publication| %>
+<% @contents.sort { |a, b| a.sort_order(b) }.each do |publication| %>
   <% next unless publication.is_visible || logged_in_as_admin? %>
   <%= render 'publication', object: publication %>
 <% end %>

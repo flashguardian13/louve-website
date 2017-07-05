@@ -121,4 +121,68 @@ RSpec.describe Publication, type: :model do
     3.times { publication.reviews.build }
     expect(publication.reviews.length).to eq(3)
   end
+
+  it 'can have a sort index' do
+    @publication.sort_index = 1
+    expect(@publication).to be_valid
+    @publication.sort_index = -10
+    expect(@publication).to be_valid
+    @publication.sort_index = 100
+    expect(@publication).to be_valid
+    @publication.sort_index = 9999
+    expect(@publication).to be_valid
+  end
+
+  describe '#sort_order' do
+    before(:each) do
+      @publication1 = Publication.new(
+        title: 'My Blog Post',
+        image: "foo.png",
+        short_description: "There's not much to say.",
+        long_description: "There's not much to say. Buy my books!"
+      )
+      @publication2 = Publication.new(
+        title: 'My Other Blog Post',
+        image: "bar.png",
+        short_description: "There's even less to say!",
+        long_description: "Buy my books already!"
+      )
+    end
+
+    it 'expects another Publication' do
+      ['foo', :bar, 1, true, nil, [], {}, Object.new].each do |bad_arg|
+        expect{ @publication1.sort_order(bad_arg) }.to raise_error(ArgumentError)
+      end
+    end
+
+    context 'when the sort indices are not equal' do
+      it 'is based on sort indices' do
+        allow(@publication1).to receive(:created_at).and_return(1000)
+        allow(@publication2).to receive(:created_at).and_return(1001)
+        @publication1.sort_index = 3
+        @publication2.sort_index = 2
+        expect(@publication1.sort_order(@publication2)).to be < 0
+      end
+    end
+
+    context 'when the sort indices are equal' do
+      it 'is based on creation date' do
+        allow(@publication1).to receive(:created_at).and_return(1000)
+        allow(@publication2).to receive(:created_at).and_return(1001)
+        @publication1.sort_index = 2
+        @publication2.sort_index = 2
+        expect(@publication1.sort_order(@publication2)).to be > 0
+      end
+    end
+
+    context 'when both the sort indices and creation dates are equal' do
+      it 'returns zero' do
+        allow(@publication1).to receive(:created_at).and_return(1)
+        allow(@publication2).to receive(:created_at).and_return(1)
+        @publication1.sort_index = 2
+        @publication2.sort_index = 2
+        expect(@publication1.sort_order(@publication2)).to eq(0)
+      end
+    end
+  end
 end

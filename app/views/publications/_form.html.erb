@@ -23,6 +23,14 @@
     </div>
 
     <div>
+      <%= f.label :sort_index %><br/>
+      <%= f.text_field :sort_index %>
+      <div>
+        Publications will be displayed in order of sort index (descending) first, then by creation date (descending).
+      </div>
+    </div>
+
+    <div>
       <%= f.check_box :is_visible %>
       <%= f.label :is_visible, 'Make this publication publicly visible' %>
     </div>
