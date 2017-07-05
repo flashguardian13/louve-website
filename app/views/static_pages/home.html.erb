@@ -1,5 +1,19 @@
 <% provide(:title, "Home") %>
 
+<% if @custom_content %>
+  <%= render 'content', object: @custom_content %>
+<% end %>
+<% if logged_in_as_admin? %>
+  <div>
+    Custom Content:
+    <%= link_to @custom_content ? 'Edit' : 'Add', '/edit_home_content' %>
+    <% if @custom_content %>
+      <%= link_to 'Delete', '/destroy_home_content', method: :delete,
+        data: { confirm: 'Really delete home page content?' } %>
+    <% end %>
+  </div>
+<% end %>
+
 <% if @blog_post %>
   <%= render 'blog_posts/post', object: @blog_post %>
 <% end %>

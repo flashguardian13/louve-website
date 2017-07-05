@@ -1,7 +1,32 @@
 class StaticPagesController < ApplicationController
+  before_action :redirect_unless_admin, except: [:home, :about, :contact]
+
   def home
     @publication = Publication.all.select { |p| p.is_visible }.first
     @blog_post = BlogPost.all.select { |b| b.is_visible }.first
+    @custom_content = HomePageContent.all.first
+  end
+
+  def edit_home_content
+    @custom_content = HomePageContent.all.first || HomePageContent.new
+  end
+
+  def update_home_content
+    @custom_content = HomePageContent.all.first || HomePageContent.new(home_content_params)
+    if params[:commit] == 'Preview'
+      @custom_content.assign_attributes(home_content_params)
+      render 'edit_home_content'
+    elsif @custom_content.update_attributes(home_content_params)
+      redirect_to action: :home, refresh: true
+    else
+      render 'edit_home_content'
+    end
+  end
+
+  def destroy_home_content
+    custom_content = HomePageContent.all.first
+    custom_content.destroy
+    redirect_to action: :home, refresh: true
   end
 
   def about
@@ -10,9 +35,9 @@ class StaticPagesController < ApplicationController
   def contact
   end
 
-  def links
-  end
+  private
 
-  def publications
+  def home_content_params
+    params.require(:home_page_content).permit(:content)
   end
 end

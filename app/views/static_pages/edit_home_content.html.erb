@@ -1,0 +1,29 @@
+<% provide(:title, 'Edit Home Page Content') %>
+
+<h1>Edit Home Page Content</h1>
+
+<table>
+  <tr>
+    <td class="content-form">
+      <%= form_for @custom_content, url: url_for(controller: 'static_pages', action: 'update_home_content'), method: :patch do |f| %>
+        <%= render 'shared/error_messages', object: @custom_content %>
+
+        <div>
+          <%= f.label :content %><br/>
+          <%= f.text_area :content %>
+        </div>
+
+        <div>
+          <%= f.submit 'Preview' %>
+          <%= f.submit 'Save' %>
+        </div>
+
+        <%= link_to 'Cancel', '/' %>
+      <% end %>
+    </td>
+
+    <td class="content-preview">
+      <%= render 'content', object: @custom_content %>
+    </td>
+  </tr>
+</table>
