@@ -1,26 +1,26 @@
-$header-bg-color:   rgba(112, 48, 207, 0.6);
-$header-text-color: #003;
+$header-bg-color:   hsla(264, 62, 50, 0.6);
 
-$banner-text-color: #dbf;
+$banner-text-color: hsl(260, 100, 89);
 
-$body-text-color:   #baf;
+$body-text-color:   hsl(252, 100, 83);
 
-$nav-link-bg-color:           #b9e;
-$nav-link-text-color:         hsl(268, 54, 11);
-$nav-hover-link-bg-color:     #dbf;
-$nav-hover-link-text-color:   #50a;
+$nav-link-bg-color:           hsl(264, 71, 77);
+$nav-hover-link-bg-color:     hsl(264, 100, 87);
 $nav-active-link-bg-color:    $header-bg-color;
-$nav-active-link-text-color:  $header-text-color;
+
+$nav-link-text-color:         hsl(270, 54, 11);
+$nav-hover-link-text-color:   hsl(270, 100, 33);
+$nav-active-link-text-color:  hsl(270, 100, 10);
 
 $content-background-color:  hsla(260, 100, 13, 0.65);
 $banner-background-color:   hsla(260, 100, 5, 0.4);
-$drop-shadow-color:         hsl(268, 50, 5);
+$drop-shadow-color:         hsl(270, 50, 5);
 
-$link-text-color:         #46f;
-$hover-link-text-color:   #9af;
-$active-link-text-color:  #79e;
+$link-text-color:         hsl(230, 100, 65);
+$hover-link-text-color:   hsl(230, 100, 90);
+$active-link-text-color:  hsl(220, 90, 80);
 
-$button-border-color:     #dbf;
+$button-border-color:     hsl(270, 100, 87);
 
 $min-app-width: 800px;
 $max-app-width: 1024px;

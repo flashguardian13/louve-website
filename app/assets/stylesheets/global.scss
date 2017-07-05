@@ -57,21 +57,24 @@ a {
   margin-bottom: 10px;
   min-width: $min-app-width;
   max-width: $max-app-width;
+  max-height: 290px;
   margin-left: auto;
   margin-right: auto;
   #logo {
-    font-family: Impact, Charcoal, sans-serif;
-    font-size: 6em;
-    color: $banner-text-color;
-    text-decoration: none;
-    &:active {
-      cursor: default;
-    }
+    position: relative;
+    left: -8px;
+    top: 2px;
+    margin-top: 10px;
+    margin-left: 10px;
+    min-width: $min-app-width - 215;
+    max-width: $max-app-width - 215;
   }
-  h2 {
-    font-family: Georgia, Serif;
+  #banner-subtitle {
+    position: relative;
+    left: -30px;
+    top: -34px;
+    font-size: 1.5em;
     color: $banner-text-color;
-    font-style: italic;
   }
 }
 
