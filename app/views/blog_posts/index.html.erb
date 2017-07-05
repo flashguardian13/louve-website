@@ -7,7 +7,13 @@
   <%= link_to 'Create New Post', new_blog_post_path %>
 <% end %>
 
-<% @contents.sort { |a, b| b.created_at <=> a.created_at }.each do |post| %>
-  <% next unless post.is_visible || logged_in_as_admin? %>
-  <%= render 'post', object: post %>
+<% if @contents.empty? %>
+  <div>
+    No blog posts have been made yet.
+  </div>
+<% else %>
+  <% @contents.sort { |a, b| b.created_at <=> a.created_at }.each do |post| %>
+    <% next unless post.is_visible || logged_in_as_admin? %>
+    <%= render 'post', object: post %>
+  <% end %>
 <% end %>

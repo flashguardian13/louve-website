@@ -7,7 +7,13 @@
   <%= link_to 'Add New Publication', new_publication_path %>
 <% end %>
 
-<% @contents.sort { |a, b| a.sort_order(b) }.each do |publication| %>
-  <% next unless publication.is_visible || logged_in_as_admin? %>
-  <%= render 'publication', object: publication %>
+<% if @contents.empty? %>
+  <div>
+    No publications have been added yet.
+  </div>
+<% else %>
+  <% @contents.sort { |a, b| a.sort_order(b) }.each do |publication| %>
+    <% next unless publication.is_visible || logged_in_as_admin? %>
+    <%= render 'publication', object: publication %>
+  <% end %>
 <% end %>
