@@ -1,5 +1,18 @@
 <% provide(:title, "Home") %>
 
+<table>
+  <tr>
+    <td>
+      <div class="image-container">
+        <%= image_tag "profileimage_cropped_medium_128.jpg", class: 'drop-shadow' %>
+      </div>
+    </td>
+    <td>
+      <p> Rhiannon Louve is an author, philosopher, teller of tales, spinner of epics, creator of worlds, and radical hippie weirdo. This is her website. Welcome!</p>
+    </td>
+  <tr>
+</table>
+
 <% if @custom_content %>
   <%= render 'content', object: @custom_content %>
 <% end %>
@@ -27,3 +40,10 @@
     Watch this space for the latest news and updates regarding the writing adventures of Rhiannon Louve!
   </div>
 <% end %>
+
+<div>
+  <h2>News and Events</h2>
+  <p>My first video game is coming out soon! Check out the awesome trailers and buzz for <%= link_to 'State of Decay 2', 'https://www.stateofdecay.com/' %>, to which I contributed character dialogue!</p>
+  <p>OryCon 2017: I'll be a panelist again this year. List of panels forthcoming!</p>
+  <p>RadCon 2018: I've just been invited to participate again! More soon!</p>
+</div>
