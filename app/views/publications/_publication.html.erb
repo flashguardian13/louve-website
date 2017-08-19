@@ -1,4 +1,5 @@
 <div class="publication-container <%= object.is_visible ? '' : 'container-invisible' %>">
+  <input type="radio" name="read-more-radios" class="read-more-state" id="post-<%= object.id %>" />
   <table>
     <tr>
       <td>
@@ -23,47 +24,52 @@
           <% end %>
         </div>
       </td>
-      <td class="publication-content">
-        <div class="publication-title">
-          <%= object.title || 'Title of the Book' %>
-        </div>
+      <td>
+        <div class="publication-content">
+          <div class="publication-title">
+            <%= object.title || 'Title of the Book' %>
+          </div>
 
-        <div class="publication-short-description">
-          <%= object.short_description.bbcode_to_html.html_safe rescue object.short_description %>
-        </div>
+          <div class="publication-short-description">
+            <%= object.short_description.bbcode_to_html.html_safe rescue object.short_description %>
+          </div>
 
-        <div class="publication-long-description">
-          <%= object.long_description.bbcode_to_html.html_safe rescue object.long_description %>
-        </div>
+          <div class="read-more-hidden">
+            <div class="publication-long-description">
+              <%= object.long_description.bbcode_to_html.html_safe rescue object.long_description %>
+            </div>
 
-        <div class="publication-reviews">
-          <% if object.reviews.empty? %>
-            No reviews found.<br/>
-          <% else %>
-            <% object.reviews.each do |review| %>
-              <%= render 'reviews/review', object: review %><br/>
+            <div class="publication-reviews">
+              <% if object.reviews.empty? %>
+                No reviews found.<br/>
+              <% else %>
+                <% object.reviews.each do |review| %>
+                  <%= render 'reviews/review', object: review %><br/>
+                <% end %>
+              <% end %>
+              <% if object.persisted? && logged_in_as_admin? %>
+                <%= link_to 'Add review', new_publication_review_path(object) %>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="publication-retailers">
+            <% if object.retailers.empty? %>
+              No retailers found.<br/>
+            <% else %>
+              Available at:
+              <% object.retailers.each do |retailer| %>
+                <%= render 'retailers/retailer', object: retailer %>
+              <% end %>
+              <br/>
             <% end %>
-          <% end %>
-          <% if object.persisted? && logged_in_as_admin? %>
-            <%= link_to 'Add review', new_publication_review_path(object) %>
-          <% end %>
-        </div>
-
-        <div class="publication-retailers">
-          <% if object.retailers.empty? %>
-            No retailers found.<br/>
-          <% else %>
-            Available at:
-            <% object.retailers.each do |retailer| %>
-              <%= render 'retailers/retailer', object: retailer %>
+            <% if object.persisted? && logged_in_as_admin? %>
+              <%= link_to 'Add retailer', new_publication_retailer_path(object) %>
             <% end %>
-            <br/>
-          <% end %>
-          <% if object.persisted? && logged_in_as_admin? %>
-            <%= link_to 'Add retailer', new_publication_retailer_path(object) %>
-          <% end %>
+          </div>
         </div>
       </td>
     </tr>
   </table>
+  <label for="post-<%= object.id %>" class="read-more-trigger">Show more</label>
 </div>

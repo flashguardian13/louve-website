@@ -4,16 +4,28 @@
 
 @import 'contents';
 
+@mixin allow-transitions {
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -ms-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+}
+
 .publication-container {
   background-color: rgba(64, 64, 64, 0.30);
   margin-top: 10px;
   margin-bottom: 10px;
-  .publication-image {
+  .publication-image img {
+    @include allow-transitions;
+    width: 170px;
+    height: auto;
   }
   .publication-admin-links {
     text-align: center;
   }
   .publication-content {
+    width: $min-app-width - 340px;
     .publication-title {
       margin: 10px;
       font-weight: bold;
@@ -27,4 +39,49 @@
       margin: 10px;
     }
   }
+  .read-more-hidden {
+    @include allow-transitions;
+    -webkit-transform: scaleY(0);
+    -ms-transform: scaleY(0);
+    transform: scaleY(0);
+    max-height: 0px;
+    overflow: hidden;
+  }
+}
+
+.read-more-state {
+  display: none;
+}
+
+.read-more-state:checked ~ .read-more-trigger {
+  @include allow-transitions;
+  padding: 0px 0px;
+  max-height: 0px;
+  overflow: hidden;
+}
+
+.read-more-state:checked ~ table .publication-image img {
+  width: 340px;
+}
+
+.read-more-state:checked ~ table .read-more-hidden {
+  -webkit-transform: scaleY(1);
+  -ms-transform: scaleY(1);
+  transform: scaleY(1);
+  max-height: 1000px;
+  overflow: inherit;
+}
+
+.read-more-trigger {
+  @include allow-transitions;
+  display: inline-block;
+  background-color: rgba(64, 128, 256, 0.15);
+  cursor: pointer;
+  text-align: center;
+  min-width: $min-app-width;
+  width: 100%;
+  max-width: $max-app-width;
+  padding: 10px 0px;
+  max-height: 1.1em;
+  overflow: hidden;
 }
