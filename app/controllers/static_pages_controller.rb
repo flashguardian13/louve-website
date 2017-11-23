@@ -5,6 +5,14 @@ class StaticPagesController < ApplicationController
     @publication = Publication.all.select { |p| p.is_visible }.first
     @blog_post = BlogPost.all.select { |b| b.is_visible }.first
     @custom_content = HomePageContent.all.first
+    @facebook_metadata = {
+      # 'fb:app_id' => 'APP_ID_HERE', <-- Find this value in your App Dashboard. Populate based on environment.
+      'og:url' => root_url,
+      'og:type' => 'website',
+      'og:title' => 'Rhiannon Louve',
+      'og:description' => 'Rhiannon Louve is an author, philosopher, teller of tales, spinner of epics, creator of worlds, and radical hippie weirdo.',
+      'og:image' => '/images/rhiannon_louve_logo_facebook.jpg'
+    }
   end
 
   def edit_home_content

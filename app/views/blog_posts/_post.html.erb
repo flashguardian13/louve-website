@@ -1,7 +1,7 @@
 <div class="post-container <%= object.is_visible ? '' : 'container-invisible' %>">
   <div class="post-header clearfix">
     <div class="post-title">
-      <%= object.title %>
+      <%= link_to object.title, blog_post_path(object) %>
     </div>
     <div class="post-date">
       <% if object.persisted? %>
