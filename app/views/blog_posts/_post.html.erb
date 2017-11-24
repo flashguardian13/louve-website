@@ -1,7 +1,11 @@
 <div class="post-container <%= object.is_visible ? '' : 'container-invisible' %>">
   <div class="post-header clearfix">
     <div class="post-title">
-      <%= link_to object.title, blog_post_path(object) %>
+      <% if object.persisted? %>
+        <%= link_to object.title, blog_post_path(object) %>
+      <% else %>
+        <%= object.title %>
+      <% end %>
     </div>
     <div class="post-date">
       <% if object.persisted? %>
@@ -24,4 +28,7 @@
   <div class="post-content">
     <%= object.content.bbcode_to_html.html_safe rescue object.content %>
   </div>
+  <% if object.persisted? %>
+    <div class="fb-like" data-href="<%= blog_post_url(object) %>" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+  <% end %>
 </div>

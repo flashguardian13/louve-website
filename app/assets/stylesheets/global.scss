@@ -114,6 +114,15 @@ nav {
   }
 }
 
+div.fb-like {
+  background-color: $nav-link-bg-color;
+  color: $body-text-color;
+  margin: 10px;
+  margin-bottom: 0px;
+  padding: 4px;
+  padding-bottom: 0px;
+}
+
 body {
   color: $body-text-color;
 }
@@ -170,6 +179,8 @@ body {
 }
 
 .copyright {
+  margin: 5px;
+  padding-bottom: 5px;
   text-align: center;
   color: $banner-text-color;
 }
