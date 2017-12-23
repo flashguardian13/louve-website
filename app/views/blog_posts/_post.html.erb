@@ -29,6 +29,6 @@
     <%= object.content.bbcode_to_html.html_safe rescue object.content %>
   </div>
   <% if object.persisted? %>
-    <div class="fb-like" data-href="<%= blog_post_url(object) %>" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+    <%= render 'layouts/social_media_buttons', object: blog_post_url(object) %>
   <% end %>
 </div>

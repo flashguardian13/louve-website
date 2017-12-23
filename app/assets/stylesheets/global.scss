@@ -114,13 +114,25 @@ nav {
   }
 }
 
-div.fb-like {
+div.social-media-bar {
+  margin: 3px 10px;
+  display: inline-block;
   background-color: $nav-link-bg-color;
-  color: $body-text-color;
-  margin: 10px;
-  margin-bottom: 0px;
-  padding: 4px;
-  padding-bottom: 0px;
+  border-radius: 5px;
+}
+
+div.g-plusone-container {
+  display: inline-block;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+div.fb-like-container {
+  display: inline-block;
+}
+
+div.fb-like {
+  top: -1px;
 }
 
 body {
