@@ -115,19 +115,29 @@ nav {
 }
 
 div.social-media-bar {
+  min-width: 580px;
+  min-height: 30px;
   margin: 3px 10px;
   display: inline-block;
   background-color: $nav-link-bg-color;
   border-radius: 5px;
+  text-align: left;
 }
 
 div.g-plusone-container {
+  min-width: 55px;
   display: inline-block;
   margin-left: 5px;
   margin-top: 5px;
 }
 
+div.twitter-container {
+  min-width: 60px;
+  display: inline-block;
+}
+
 div.fb-like-container {
+  min-width: 400px;
   display: inline-block;
 }
 
