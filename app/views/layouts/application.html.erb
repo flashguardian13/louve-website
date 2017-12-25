@@ -10,7 +10,8 @@
       <%= render 'layouts/facebook_metadata', object: @facebook_metadata %>
     <% end %>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <%= render 'layouts/twitter_widget' %>
+    <%= javascript_include_tag 'facebook_sdk', 'data-turbolinks-track': 'reload', async: true, defer: true %>
+    <%= javascript_include_tag 'twitter_widget', 'data-turbolinks-track': 'reload', async: true, defer: true %>
   </head>
 
   <body>
