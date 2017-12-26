@@ -18,7 +18,15 @@
     .post-date {
       text-align: right;
       float: right;
+      color: $banner-text-color;
     }
+  }
+  .post-abstract {
+    clear: both;
+    margin: 10px;
+    font-style: italic;
+    font-size: 0.9em;
+    color: $banner-text-color;
   }
   .post-content {
     clear: both;

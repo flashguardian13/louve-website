@@ -25,6 +25,11 @@
       <% end %>
     </div>
   </div>
+  <% if object.abstract && !object.abstract.strip.empty? %>
+    <div class="post-abstract">
+      <%= object.abstract %>
+    </div>
+  <% end %>
   <div class="post-content">
     <%= object.content.bbcode_to_html.html_safe rescue object.content %>
   </div>

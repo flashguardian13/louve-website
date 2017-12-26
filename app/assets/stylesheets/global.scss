@@ -249,6 +249,9 @@ form {
     min-width: $max-app-width * 0.45;
     min-height: 300px;
   }
+  textarea#blog_post_abstract {
+    min-height: 100px;
+  }
 }
 
 #error_explanation {

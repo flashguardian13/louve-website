@@ -6,7 +6,7 @@ class BlogPostsController < ContentsController
       'og:url' => blog_post_url(params[:id]),
       'og:type' => 'article',
       'og:title' => "Rhiannon Louve - #{@content.title}",
-      'og:description' => generate_abstract(@content.content),
+      'og:description' => @content.abstract || generate_abstract(@content.content),
       'og:image' => '/images/rhiannon_louve_logo_facebook.jpg'
     }
   end
@@ -20,6 +20,6 @@ class BlogPostsController < ContentsController
   end
 
   def content_params
-    params.require(:blog_post).permit(:title, :content, :is_visible)
+    params.require(:blog_post).permit(:title, :abstract, :content, :is_visible)
   end
 end

@@ -52,4 +52,12 @@ RSpec.describe BlogPost, type: :model do
     @blog_post.is_visible = false
     expect(@blog_post).to be_valid
   end
+
+  it 'has an optional abstract' do
+    @blog_post.abstract = nil
+    expect(@blog_post).to be_valid
+
+    @blog_post.abstract = 'This is my abstract.'
+    expect(@blog_post).to be_valid
+  end
 end
