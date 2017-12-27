@@ -136,6 +136,23 @@ div.twitter-container {
   display: inline-block;
 }
 
+@mixin filter-brightness($brightness) {
+  filter:         brightness($brightness);
+  -ms-filter:     brightness($brightness); /* IE */
+  -moz-filter:    brightness($brightness); /* Firefox */
+  -webkit-filter: brightness($brightness); /* Safari and Chrome */
+  -o-filter:      brightness($brightness);
+}
+
+.email-share-container {
+  &:hover {
+    @include filter-brightness(0.9);
+  }
+  &:active {
+    @include filter-brightness(1.2);
+  }
+}
+
 div.fb-like-container {
   min-width: 400px;
   display: inline-block;
