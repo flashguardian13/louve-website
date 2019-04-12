@@ -22,3 +22,6 @@
 
 # Ignore unused images
 app/assets/images/unused/*
+
+# Ignore local documentation
+docs/*
