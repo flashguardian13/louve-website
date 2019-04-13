@@ -2,7 +2,7 @@ require "selenium-webdriver"
 
 require_relative 'selenium_helpers.rb'
 
-describe 'Home Page' do
+describe 'Common Elements' do
   before(:all) do
     @driver = Selenium::WebDriver.for :chrome
 

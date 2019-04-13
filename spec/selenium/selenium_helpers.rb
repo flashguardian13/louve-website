@@ -1,3 +1,5 @@
+require 'json'
+
 def get_children(element)
   element.find_element(xpath: './*')
 end
@@ -27,4 +29,19 @@ end
 def attach_turbolinks_listeners(driver)
   driver.execute_script('document.addEventListener("turbolinks:before-visit", function() { window.turbolinks_is_busy = true; });')
   driver.execute_script('document.addEventListener("turbolinks:load", function() { window.turbolinks_is_busy = false; });')
+end
+
+def login_as_admin(driver)
+  path = File.join(File.dirname(__FILE__), '../../secrets/test_credentials')
+  json = JSON.parse(File.read(path))
+
+  driver.navigate.to('http://localhost:3000/login')
+  driver.find_element(css: '#session_email').send_keys(json['development']['u'])
+  driver.find_element(css: '#session_password').send_keys(json['development']['p'])
+  driver.find_element(css: 'form[action="/login"] input[type="submit"]').click
+  wait_for_page_load
+end
+
+def logout(driver)
+  driver.find_element(css: 'a[href="/logout"]').click
 end

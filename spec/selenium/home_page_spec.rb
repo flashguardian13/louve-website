@@ -14,23 +14,29 @@ describe 'Home Page' do
     @driver.quit
   end
 
-  it 'has the expected title' do
+  it 'has welcome text' do
+    e = @driver.find_element(css: '#welcome')
+    expect(e.text).to include('Rhiannon Louve')
+    expect(e.text).to include('Welcome!')
   end
 
-  it 'has welcome text' do
+  it 'has custom content' do
+    e = @driver.find_element(css: 'body > div.content > div.post-content')
+    expect(e.text).to include('something completely different')
   end
 
   it 'shows the first blog post' do
+    posts = @driver.find_elements(css: 'body > div.content > div.post-container')
+    expect(posts.length).to eq(1)
   end
 
   it 'shows a summary of the first publication' do
+    publications = @driver.find_elements(css: 'body > div.content > div.publication-container')
+    expect(publications.length).to eq(1)
   end
 
   it 'shows a news blurb' do
-  end
-
-  context 'when show more is clicked' do
-    it 'shows full publication information' do
-    end
+    news = @driver.find_element(css: 'body > div.content > div#news-and-events > h2')
+    expect(news.text).to include('News and Events')
   end
 end
