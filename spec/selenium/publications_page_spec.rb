@@ -6,8 +6,8 @@ describe 'Publications Page' do
   before(:all) do
     @driver = Selenium::WebDriver.for :chrome
 
-    @driver.navigate.to "http://localhost:3000/publications"
-    attach_turbolinks_listeners(@driver)
+    @base_url = "http://localhost:3000/publications"
+    wait_for_page_load(@driver) { @driver.navigate.to @base_url }
   end
 
   after(:all) do
@@ -27,8 +27,7 @@ describe 'Publications Page' do
       read_more = publication.find_element(css: 'div.read-more-hidden')
       expect(read_more).not_to be_displayed
 
-      publication.find_element(css: 'label').click
-      wait_for_page_load
+      wait_for_page_load(@driver) { publication.find_element(css: 'label').click }
       expect(read_more).to be_displayed
     end
   end

@@ -6,8 +6,8 @@ describe 'Common Elements' do
   before(:all) do
     @driver = Selenium::WebDriver.for :chrome
 
-    @driver.navigate.to "http://localhost:3000/"
-    attach_turbolinks_listeners(@driver)
+    @base_url = "http://localhost:3000/"
+    wait_for_page_load(@driver) { @driver.navigate.to @base_url }
   end
 
   after(:all) do
@@ -57,8 +57,7 @@ describe 'Common Elements' do
       ['a#links-button', 'Links | Rhiannon Louve', 'http://localhost:3000/links'],
       ['a#contact-button', 'Contacts | Rhiannon Louve', 'http://localhost:3000/contact'],
     ].shuffle.each do |selector, title, url|
-      @driver.find_element(css: selector).click
-      wait_for_page_load
+      wait_for_page_load(@driver) { @driver.find_element(css: selector).click }
       expect(@driver.title).to eq(title)
       expect(@driver.current_url).to eq(url)
     end
@@ -67,12 +66,12 @@ describe 'Common Elements' do
   context 'when signed in' do
     before(:all) do
       login_as_admin(@driver)
-      @driver.navigate.to "http://localhost:3000/"
+      wait_for_page_load(@driver) { @driver.navigate.to @base_url }
     end
 
     after(:all) do
       logout(@driver)
-      @driver.navigate.to "http://localhost:3000/"
+      wait_for_page_load(@driver) { @driver.navigate.to @base_url }
     end
 
     it 'displays the username' do

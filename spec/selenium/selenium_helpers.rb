@@ -20,7 +20,9 @@ def inspect_element(element)
   ].join("\n")
 end
 
-def wait_for_page_load
+def wait_for_page_load(driver)
+  attach_turbolinks_listeners(driver)
+  yield
   sleep(1)
   wait = Selenium::WebDriver::Wait.new(:timeout => 60)
   wait.until { @driver.execute_script("return document.readyState == 'complete' && jQuery.active == 0 && !window.turbolinks_is_busy") }
@@ -38,10 +40,9 @@ def login_as_admin(driver)
   driver.navigate.to('http://localhost:3000/login')
   driver.find_element(css: '#session_email').send_keys(json['development']['u'])
   driver.find_element(css: '#session_password').send_keys(json['development']['p'])
-  driver.find_element(css: 'form[action="/login"] input[type="submit"]').click
-  wait_for_page_load
+  wait_for_page_load(driver) { driver.find_element(css: 'form[action="/login"] input[type="submit"]').click }
 end
 
 def logout(driver)
-  driver.find_element(css: 'a[href="/logout"]').click
+  wait_for_page_load(driver) { driver.find_element(css: 'a[href="/logout"]').click }
 end

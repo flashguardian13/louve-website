@@ -6,8 +6,8 @@ describe 'Contacts Page' do
   before(:all) do
     @driver = Selenium::WebDriver.for :chrome
 
-    @driver.navigate.to "http://localhost:3000/contact"
-    attach_turbolinks_listeners(@driver)
+    @base_url = "http://localhost:3000/contact"
+    wait_for_page_load(@driver) { @driver.navigate.to @base_url }
   end
 
   after(:all) do

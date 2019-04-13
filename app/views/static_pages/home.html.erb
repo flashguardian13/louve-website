@@ -17,12 +17,12 @@
   <%= render 'content', object: @custom_content %>
 <% end %>
 <% if logged_in_as_admin? %>
-  <div>
+  <div id="custom-content-links">
     Custom Content:
-    <%= link_to @custom_content ? 'Edit' : 'Add', '/edit_home_content' %>
+    <%= link_to @custom_content ? 'Edit' : 'Add', '/edit_home_content', id: 'custom-content-edit' %>
     <% if @custom_content %>
       <%= link_to 'Delete', '/destroy_home_content', method: :delete,
-        data: { confirm: 'Really delete home page content?' } %>
+        data: { confirm: 'Really delete home page content?' }, id: 'custom-content-delete' %>
     <% end %>
   </div>
 <% end %>
