@@ -4,7 +4,7 @@
     <div id="banner-subtitle">Author, Dreamer, Spiritual Futurist</div>
   </div>
   <% if logged_in? %>
-    <div class="center">
+    <div class="center" id="login-info">
       You are signed in as <%= current_user.name %>.
       <%= link_to "Sign out", logout_path %>
     </div>
