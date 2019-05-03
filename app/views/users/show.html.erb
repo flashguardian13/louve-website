@@ -1,11 +1,11 @@
 <% provide(:title, @user.name) %>
 
-<div>
+<div id="user-name">
   Name: <%= @user.name %>
 </div>
-<div>
+<div id="user-email">
   Email: <%= @user.email %>
 </div>
 
-<%= link_to 'Edit profile', edit_user_path(@user) %><br/>
-<%= link_to 'Back to all users', users_path %>
+<%= link_to 'Edit profile', edit_user_path(@user), id: 'link-edit-user' %><br/>
+<%= link_to 'Back to all users', users_path, id: 'link-back' %>

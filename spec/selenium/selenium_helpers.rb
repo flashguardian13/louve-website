@@ -46,3 +46,7 @@ end
 def logout(driver)
   wait_for_page_load(driver) { driver.find_element(css: 'a[href="/logout"]').click }
 end
+
+def skip_confirmation
+  @driver.execute_script('window.confirm = function() { return true; }')
+end

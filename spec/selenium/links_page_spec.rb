@@ -79,7 +79,7 @@ describe 'Links Page' do
 
           context 'when deleting the link' do
             before(:all) do
-              @driver.execute_script('window.confirm = function() { return true; }')
+              skip_confirmation
               wait_for_page_load(@driver) { @link_container.find_element(css: 'div.link-admin > a.link-delete').click }
             end
 

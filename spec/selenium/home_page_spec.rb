@@ -151,7 +151,7 @@ describe 'Home Page' do
       before(:all) do
         @current_content = @driver.find_element(css: 'body > div.content > div.post-content').text
 
-        @driver.execute_script('window.confirm = function() { return true; }')
+        skip_confirmation
         wait_for_page_load(@driver) { @driver.find_element(css: 'div#custom-content-links > a#custom-content-delete').click }
       end
 
