@@ -4,7 +4,7 @@
   <div>
     Publications surrounded by a <span class="container-invisible">dotted cyan border</span> are not publicly visible.
   </div>
-  <%= link_to 'Add New Publication', new_publication_path %>
+  <%= link_to 'Add New Publication', new_publication_path, id: 'new-publication-link' %>
 <% end %>
 
 <% if @contents.empty? %>
