@@ -39,7 +39,7 @@ describe 'Users Page' do
     it 'gives the option to create a new user' do
       link = @users_index_page.new_user_link
       expect(link).not_to be_nil
-      expect(link).to be_visible
+      expect(link).to be_displayed
     end
 
     context 'when cancelling a new user request' do
@@ -62,7 +62,7 @@ describe 'Users Page' do
       end
 
       it 'does not create the user' do
-        expect(@users_index_page.user_exists?('joe.test@gmail.com')).to be_false
+        expect(@users_index_page.user_exists?('joe.test@gmail.com')).to be false
       end
     end
 
@@ -82,13 +82,13 @@ describe 'Users Page' do
       end
 
       it 'displays the new user' do
-        expect(@driver.current_url).to match(%r{#{@users_new_page.base_url}/\d+\Z})
+        expect(@driver.current_url).to match(%r{#{@user_show_page.base_url}\Z})
       end
 
       it 'creates the user' do
         expect(@user_show_page.alert.text).to eq('User Joe Test created successfully.')
-        expect(@user_show_page.user_name.text).to eq('Joe Test')
-        expect(@user_show_page.user_email.text).to eq('joe.test@gmail.com')
+        expect(@user_show_page.user_name.text).to include('Joe Test')
+        expect(@user_show_page.user_email.text).to include('joe.test@gmail.com')
       end
 
       after(:all) do
@@ -111,7 +111,7 @@ describe 'Users Page' do
 
       it 'deletes the user' do
         expect(@users_index_page.alert.text).to eq('User Joe Test deleted.')
-        expect(@users_index_page.user_exists?('joe.test@gmail.com')).to be_false
+        expect(@users_index_page.user_exists?('joe.test@gmail.com')).to be false
       end
     end
   end

@@ -1,7 +1,7 @@
 require_relative 'page_wrapper.rb'
 
 class UserShowPage < PageWrapper
-  BASE_URL = "http://localhost:3000/users/1"
+  BASE_URL = "http://localhost:3000/users/\\d+"
 
   def initialize(driver)
     super(driver, BASE_URL)

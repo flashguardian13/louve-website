@@ -21,6 +21,7 @@ describe 'Links Page' do
     end
 
     after(:all) do
+      wait_for_page_load(@driver) { @driver.navigate.to @base_url }
       logout(@driver)
       wait_for_page_load(@driver) { @driver.navigate.to @base_url }
     end
@@ -48,7 +49,7 @@ describe 'Links Page' do
           expect(link['href']).to eq('http://www.google.com/')
 
           desc = @driver.find_element(css: 'td.content-preview div.link-description')
-          expect(desc.text).to include?('heard of Google')
+          expect(desc.text).to include('heard of Google')
         end
 
         context 'when submitting a new link' do
@@ -64,7 +65,7 @@ describe 'Links Page' do
 
             expect(link.text).to eq('Google')
             expect(link['href']).to eq('http://www.google.com/')
-            expect(desc.text).to include?('heard of Google')
+            expect(desc.text).to include('heard of Google')
           end
 
           it 'allows the new link to be shown, edited, or deleted' do
