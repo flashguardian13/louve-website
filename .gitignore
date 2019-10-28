@@ -25,3 +25,6 @@ app/assets/images/unused/*
 
 # Ignore local documentation
 docs/*
+
+# Ignore secrets
+secrets/*
