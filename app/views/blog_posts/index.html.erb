@@ -4,7 +4,7 @@
   <div>
     Posts surrounded by a <span class="container-invisible">dotted cyan border</span> are not publicly visible.
   </div>
-  <%= link_to 'Create New Post', new_blog_post_path %>
+  <%= link_to 'Create New Post', new_blog_post_path, id: 'new-post-link' %>
 <% end %>
 
 <% if @contents.empty? %>

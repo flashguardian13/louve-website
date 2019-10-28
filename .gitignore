@@ -19,3 +19,12 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore unused images
+app/assets/images/unused/*
+
+# Ignore local documentation
+docs/*
+
+# Ignore secrets
+secrets/*

@@ -1,19 +1,19 @@
 <nav>
   <ul>
     <li>
-      <%= link_to "Home",         root_path %>
+      <%= link_to "Home",         root_path, id: "home-button" %>
     </li><li>
-      <%= link_to "About",        about_path %>
+      <%= link_to "About",        about_path, id: "about-button" %>
     </li><li>
-      <%= link_to "Publications", publications_path %>
+      <%= link_to "Publications", publications_path, id: "publications-button" %>
     </li><li>
-      <%= link_to "Blogs",        blogs_path %>
+      <%= link_to "Blogs",        blogs_path, id: "blogs-button" %>
     </li><li>
-      <%= link_to "Links",        links_path %>
+      <%= link_to "Links",        links_path, id: "links-button" %>
     </li><li>
-      <%= link_to "Contact",      contact_path %>
+      <%= link_to "Contact",      contact_path, id: "contact-button" %>
     </li><% if logged_in_as_admin? %><li>
-      <%= link_to "Users",        users_path %>
+      <%= link_to "Users",        users_path, id: "users-button" %>
     </li><% end %>
   </ul>
 </nav>

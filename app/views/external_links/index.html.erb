@@ -4,7 +4,7 @@
   <div>
     Links surrounded by a <span class="container-invisible">dotted cyan border</span> are not publicly visible.
   </div>
-  <%= link_to 'Create New Link', new_external_link_path %>
+  <%= link_to 'Create New Link', new_external_link_path, id: 'link-create-new' %>
 <% end %>
 
 <% if @contents.empty? %>

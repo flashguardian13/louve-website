@@ -1,21 +1,21 @@
 <% provide(:title, 'Users') %>
 
-<table>
-  <tr>
+<table id="user-list">
+  <tr class='user-headers'>
     <th>Name</th>
     <th>Email</th>
     <th>Type</th>
   </tr>
   <% @users.each do |user| %>
     <tr>
-      <td><%= link_to user.name, user_path(user) %></td>
-      <td><%= user.email %></td>
-      <td><%= user.is_admin ? 'Admin' : 'User' %></td>
+      <td class="user-name"><%= link_to user.name, user_path(user) %></td>
+      <td class="user-email"><%= user.email %></td>
+      <td class="user-type"><%= user.is_admin ? 'Admin' : 'User' %></td>
       <% if logged_in_as_admin? || user == current_user %>
         <td>
-          <%= link_to 'Edit', edit_user_path(user) %>
+          <%= link_to 'Edit', edit_user_path(user), class: 'edit-user-link' %>
           <% if user.id != 1 %>
-            <%= link_to 'Delete', user_path(user), method: :delete,
+            <%= link_to 'Delete', user_path(user), method: :delete, class: 'delete-user-link',
                       data: {confirm: "Really delete user #{user.name}? This cannot be undone!"} %>
           <% end %>
         </td>
@@ -24,4 +24,4 @@
   <% end %>
 </table>
 
-<%= link_to 'Create new user', new_user_path %>
+<%= link_to 'Create new user', new_user_path, id: 'new-user-link' %>

@@ -3,12 +3,12 @@
   <% if object.persisted? && logged_in_as_admin? %>
     (
     <% if object.is_visible %>
-      <%= link_to 'Hide', publication_retailer_path(object.publication, object, retailer: {is_visible: false}), method: :patch %>
+      <%= link_to 'Hide', publication_retailer_path(object.publication, object, retailer: {is_visible: false}), method: :patch, class: 'hide-retailer-link' %>
     <% else %>
-      <%= link_to 'Show', publication_retailer_path(object.publication, object, retailer: {is_visible: true}), method: :patch %>
+      <%= link_to 'Show', publication_retailer_path(object.publication, object, retailer: {is_visible: true}), method: :patch, class: 'show-retailer-link' %>
     <% end %>
-    <%= link_to 'Edit', edit_publication_retailer_path(object.publication, object) %>
-    <%= link_to 'Delete', publication_retailer_path(object.publication, object), method: :delete,
+    <%= link_to 'Edit', edit_publication_retailer_path(object.publication, object), class: 'edit-retailer-link' %>
+    <%= link_to 'Delete', publication_retailer_path(object.publication, object), method: :delete, class: 'delete-retailer-link',
       data: { confirm: 'Really delete this retailer?' } %>
     )
   <% end %>

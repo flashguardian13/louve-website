@@ -14,12 +14,12 @@
         <div class="publication-admin-links">
           <% if object.persisted? && logged_in_as_admin? %>
             <% if object.is_visible %>
-              <%= link_to 'Hide', publication_path(object, publication: {is_visible: false}), method: :patch %>
+              <%= link_to 'Hide', publication_path(object, publication: {is_visible: false}), method: :patch, class: 'hide-publication-link' %>
             <% else %>
-              <%= link_to 'Show', publication_path(object, publication: {is_visible: true}), method: :patch %>
+              <%= link_to 'Show', publication_path(object, publication: {is_visible: true}), method: :patch, class: 'show-publication-link' %>
             <% end %>
-            <%= link_to 'Edit', edit_publication_path(object) %>
-            <%= link_to 'Delete', publication_path(object), method: :delete,
+            <%= link_to 'Edit', edit_publication_path(object), class: 'edit-publication-link' %>
+            <%= link_to 'Delete', publication_path(object), method: :delete, class: 'delete-publication-link',
               data: { confirm: 'Really delete this publication?' } %>
           <% end %>
         </div>
@@ -48,7 +48,7 @@
                 <% end %>
               <% end %>
               <% if object.persisted? && logged_in_as_admin? %>
-                <%= link_to 'Add review', new_publication_review_path(object) %>
+                <%= link_to 'Add review', new_publication_review_path(object), class: 'add-review-link' %>
               <% end %>
             </div>
           </div>
@@ -64,7 +64,7 @@
               <br/>
             <% end %>
             <% if object.persisted? && logged_in_as_admin? %>
-              <%= link_to 'Add retailer', new_publication_retailer_path(object) %>
+              <%= link_to 'Add retailer', new_publication_retailer_path(object), class: 'add-retailer-link' %>
             <% end %>
           </div>
         </div>

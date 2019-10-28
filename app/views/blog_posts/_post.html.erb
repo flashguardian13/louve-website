@@ -2,7 +2,7 @@
   <div class="post-header clearfix">
     <div class="post-title">
       <% if object.persisted? %>
-        <%= link_to object.title, blog_post_path(object) %>
+        <%= link_to object.title, blog_post_path(object), class: 'visit-link' %>
       <% else %>
         <%= object.title %>
       <% end %>
@@ -12,12 +12,12 @@
         <%= object.created_at.strftime('%A, %B %e, %Y, %l:%M:%S %p') %><br/>
         <% if logged_in_as_admin? %>
           <% if object.is_visible %>
-            <%= link_to 'Hide', blog_post_path(object, blog_post: {is_visible: false}), method: :patch %>
+            <%= link_to 'Hide', blog_post_path(object, blog_post: {is_visible: false}), method: :patch, class: 'hide-link' %>
           <% else %>
-            <%= link_to 'Show', blog_post_path(object, blog_post: {is_visible: true}), method: :patch %>
+            <%= link_to 'Show', blog_post_path(object, blog_post: {is_visible: true}), method: :patch, class: 'show-link' %>
           <% end %>
-          <%= link_to 'Edit', edit_blog_post_path(object) %>
-          <%= link_to 'Delete', blog_post_path(object), method: :delete,
+          <%= link_to 'Edit', edit_blog_post_path(object), class: 'edit-link' %>
+          <%= link_to 'Delete', blog_post_path(object), method: :delete, class: 'delete-link',
             data: { confirm: 'Really delete this post?' } %>
         <% end %>
       <% else %>

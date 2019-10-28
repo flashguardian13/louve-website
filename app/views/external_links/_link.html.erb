@@ -6,12 +6,12 @@
     <div class="link-admin">
       <% if object.persisted? && logged_in_as_admin? %>
         <% if object.is_visible %>
-          <%= link_to 'Hide', external_link_path(object, external_link: {is_visible: false}), method: :patch %>
+          <%= link_to 'Hide', external_link_path(object, external_link: {is_visible: false}), method: :patch, class: 'link-hide' %>
         <% else %>
-          <%= link_to 'Show', external_link_path(object, external_link: {is_visible: true}), method: :patch %>
+          <%= link_to 'Show', external_link_path(object, external_link: {is_visible: true}), method: :patch, class: 'link-show' %>
         <% end %>
-        <%= link_to 'Edit', edit_external_link_path(object) %>
-        <%= link_to 'Delete', external_link_path(object), method: :delete,
+        <%= link_to 'Edit', edit_external_link_path(object), class: 'link-edit' %>
+        <%= link_to 'Delete', external_link_path(object), method: :delete, class: 'link-delete',
                               data: { confirm: 'Really delete this link?' } %>
       <% end %>
     </div>

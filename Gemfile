@@ -50,6 +50,9 @@ group :development, :test do
 
   # RSpec testing framework
   gem 'rspec-rails', '~> 3.5'
+
+  # Selenium Webdriver integration tests
+  gem "selenium-webdriver"
 end
 
 group :development do

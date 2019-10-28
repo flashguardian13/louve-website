@@ -27,5 +27,5 @@
     <%= f.submit yield(:submit_text) %>
   </div>
 
-  <%= link_to 'Cancel', yield(:cancel_path) %>
+  <%= link_to 'Cancel', yield(:cancel_path), id: 'cancel' %>
 <% end %>

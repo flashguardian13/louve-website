@@ -8,7 +8,7 @@
       </div>
     </td>
     <td>
-      <p> Rhiannon Louve is an author, philosopher, teller of tales, spinner of epics, creator of worlds, and radical hippie weirdo. This is her website. Welcome!</p>
+      <p id="welcome"> Rhiannon Louve is an author, philosopher, teller of tales, spinner of epics, creator of worlds, and radical hippie weirdo. This is her website. Welcome!</p>
     </td>
   <tr>
 </table>
@@ -17,12 +17,12 @@
   <%= render 'content', object: @custom_content %>
 <% end %>
 <% if logged_in_as_admin? %>
-  <div>
+  <div id="custom-content-links">
     Custom Content:
-    <%= link_to @custom_content ? 'Edit' : 'Add', '/edit_home_content' %>
+    <%= link_to @custom_content ? 'Edit' : 'Add', '/edit_home_content', id: 'custom-content-edit' %>
     <% if @custom_content %>
       <%= link_to 'Delete', '/destroy_home_content', method: :delete,
-        data: { confirm: 'Really delete home page content?' } %>
+        data: { confirm: 'Really delete home page content?' }, id: 'custom-content-delete' %>
     <% end %>
   </div>
 <% end %>
@@ -41,7 +41,7 @@
   </div>
 <% end %>
 
-<div>
+<div id="news-and-events">
   <h2>News and Events</h2>
   <p>My first video game is coming out soon! Check out the awesome trailers and buzz for <%= link_to 'State of Decay 2', 'https://www.stateofdecay.com/' %>, to which I contributed character dialogue!</p>
   <p>OryCon 2017: I'll be a panelist again this year. List of panels forthcoming!</p>
