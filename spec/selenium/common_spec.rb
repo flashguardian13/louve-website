@@ -75,7 +75,7 @@ describe 'Common Elements' do
     it 'displays the username' do
       element = @driver.find_element(css: 'header > div#login-info')
       expect(element.text).to include('signed in')
-      expect(element.text).to include('admin')
+      expect(element.text).to include(admin_username)
     end
 
     it 'displays a users button' do

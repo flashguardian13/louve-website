@@ -34,13 +34,19 @@ def attach_turbolinks_listeners(driver)
 end
 
 def login_as_admin(driver)
-  path = File.join(File.dirname(__FILE__), '../../secrets/test_credentials')
+  path = File.join(__dir__, '../../secrets/test_credentials')
   json = JSON.parse(File.read(path))
 
   driver.navigate.to('http://localhost:3000/login')
   driver.find_element(css: '#session_email').send_keys(json['development']['u'])
   driver.find_element(css: '#session_password').send_keys(json['development']['p'])
   wait_for_page_load(driver) { driver.find_element(css: 'form[action="/login"] input[type="submit"]').click }
+end
+
+def admin_username
+  path = File.join(__dir__, '../../secrets/test_credentials')
+  json = JSON.parse(File.read(path))
+  json['development']['n']
 end
 
 def logout(driver)
