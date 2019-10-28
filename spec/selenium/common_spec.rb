@@ -37,12 +37,10 @@ describe 'Common Elements' do
   end
 
   it 'has four social media buttons at the top and bottom' do
-    expect(@driver.find_elements(css: 'body > div.center > div > div.g-plusone-container')).not_to be_empty
     expect(@driver.find_elements(css: 'body > div.center > div > div.twitter-container')).not_to be_empty
     expect(@driver.find_elements(css: 'body > div.center > div > a')).not_to be_empty
     expect(@driver.find_elements(css: 'body > div.center > div > div.fb-like-container')).not_to be_empty
 
-    expect(@driver.find_elements(css: 'body > div.content > div.post-container > div.center > div > div.g-plusone-container')).not_to be_empty
     expect(@driver.find_elements(css: 'body > div.content > div.post-container > div.center > div > div.twitter-container')).not_to be_empty
     expect(@driver.find_elements(css: 'body > div.content > div.post-container > div.center > div > a')).not_to be_empty
     expect(@driver.find_elements(css: 'body > div.content > div.post-container > div.center > div > div.fb-like-container')).not_to be_empty
