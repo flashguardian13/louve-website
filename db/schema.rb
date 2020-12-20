@@ -10,74 +10,74 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171226230438) do
+ActiveRecord::Schema.define(version: 2017_12_26_230438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "blog_posts", force: :cascade do |t|
-    t.string   "title"
-    t.string   "content"
+  create_table "blog_posts", id: :serial, force: :cascade do |t|
+    t.string "title"
+    t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean  "is_visible"
-    t.string   "abstract"
+    t.boolean "is_visible"
+    t.string "abstract"
   end
 
-  create_table "external_links", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "url"
-    t.string   "title"
-    t.string   "description"
-    t.boolean  "is_visible"
+  create_table "external_links", id: :serial, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "url"
+    t.string "title"
+    t.string "description"
+    t.boolean "is_visible"
   end
 
-  create_table "home_page_contents", force: :cascade do |t|
-    t.string   "content"
+  create_table "home_page_contents", id: :serial, force: :cascade do |t|
+    t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "publications", force: :cascade do |t|
-    t.string   "title"
-    t.string   "image"
-    t.string   "short_description"
-    t.string   "long_description"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.boolean  "is_visible"
-    t.integer  "sort_index"
+  create_table "publications", id: :serial, force: :cascade do |t|
+    t.string "title"
+    t.string "image"
+    t.string "short_description"
+    t.string "long_description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "is_visible"
+    t.integer "sort_index"
   end
 
-  create_table "retailers", force: :cascade do |t|
-    t.integer  "publication_id"
-    t.string   "name"
-    t.string   "link"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.boolean  "is_visible"
-    t.index ["publication_id"], name: "index_retailers_on_publication_id", using: :btree
+  create_table "retailers", id: :serial, force: :cascade do |t|
+    t.integer "publication_id"
+    t.string "name"
+    t.string "link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "is_visible"
+    t.index ["publication_id"], name: "index_retailers_on_publication_id"
   end
 
-  create_table "reviews", force: :cascade do |t|
-    t.integer  "publication_id"
-    t.string   "quote"
-    t.string   "attribution"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.boolean  "is_visible"
-    t.index ["publication_id"], name: "index_reviews_on_publication_id", using: :btree
+  create_table "reviews", id: :serial, force: :cascade do |t|
+    t.integer "publication_id"
+    t.string "quote"
+    t.string "attribution"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "is_visible"
+    t.index ["publication_id"], name: "index_reviews_on_publication_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password_digest"
-    t.boolean  "is_admin"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+  create_table "users", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.boolean "is_admin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end
