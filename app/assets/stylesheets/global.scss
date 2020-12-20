@@ -114,21 +114,6 @@ nav {
   }
 }
 
-div.social-media-bar {
-  min-width: 580px;
-  min-height: 30px;
-  margin: 3px 10px;
-  display: inline-block;
-  background-color: $nav-link-bg-color;
-  border-radius: 5px;
-  text-align: left;
-}
-
-div.twitter-container {
-  min-width: 60px;
-  display: inline-block;
-}
-
 @mixin filter-brightness($brightness) {
   filter:         brightness($brightness);
   -ms-filter:     brightness($brightness); /* IE */
@@ -137,18 +122,49 @@ div.twitter-container {
   -o-filter:      brightness($brightness);
 }
 
-.email-share-container {
-  &:hover {
-    @include filter-brightness(0.9);
+div.social-media-bar {
+  min-height: 30px;
+  margin: 3px 10px;
+  display: grid;
+  grid-template-columns: 60px 30px auto;
+  grid-template-areas: "twitter email facebook";
+  column-gap: 5px;
+  justify-content: center;
+  align-content: center;
+  background-color: $nav-link-bg-color;
+  border-radius: 5px;
+  .twitter-container {
+    grid-area: twitter;
+    align-self: center;
+    min-width: 60px;
+    height: 20px;
+    iframe {
+      width: 60px;
+      max-height: 20px;
+    }
   }
-  &:active {
-    @include filter-brightness(1.2);
+  .email-share-container {
+    grid-area: email;
+    align-self: center;
+    min-width: 30px;
+    height: 21px;
+    &:hover {
+      @include filter-brightness(0.9);
+    }
+    &:active {
+      @include filter-brightness(1.2);
+    }
   }
-}
-
-div.fb-like-container {
-  min-width: 400px;
-  display: inline-block;
+  .fb-like-container {
+    grid-area: facebook;
+    justify-self: start;
+    align-self: center;
+    min-width: 450px;
+    max-height: 20px;
+    * {
+      max-height: 20px;
+    }
+  }
 }
 
 div.fb-like {
