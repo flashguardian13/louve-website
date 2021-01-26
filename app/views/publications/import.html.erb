@@ -1,0 +1,24 @@
+<%= form_tag do %>
+  <% if @content %>
+    <%= render 'shared/error_messages', object: @content %>
+  <% end %>
+
+  <div>
+    You may copy text here in CSV format. Each line of the CSV should contain
+    individual publications with all expected data.
+  </div>
+
+  <div>
+    Important: when you submit this information, all existing publications will
+    be REMOVED and replaced with new publications based on the CSV data provided.
+    New publications will be publically visible immediately. This operation is
+    irreversible!
+  </div>
+
+  <div>
+    <%= label_tag :publications_csv %><br/>
+    <%= text_area_tag :publications_csv %>
+  </div>
+
+  <%= submit_tag %>
+<% end %>

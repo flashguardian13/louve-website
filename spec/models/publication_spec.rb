@@ -294,5 +294,13 @@ RSpec.describe Publication, type: :model do
     it 'complains about missing keys' do
       expect { @publication.update_from_hash('foo' => 'bar') }.to raise_error(ArgumentError)
     end
+
+    it 'sets the publication and referenced objects to be visible' do
+      @publication.update_from_hash(dummy_hash)
+      expect(@publication.is_visible).to eq(true)
+      @publication.retailers.each do |retailer|
+        expect(retailer.is_visible).to eq(true)
+      end
+    end
   end
 end

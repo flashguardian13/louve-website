@@ -79,12 +79,16 @@ class Publication < ApplicationRecord
     self.publish_date = Date.parse(hash['Publication Date'])
     self.short_description = hash['Summary']
     self.long_description = hash['Additional Details']
+    self.is_visible = true
 
     save!
 
     self.retailers.destroy_all
     RETAILER_LINK_KEYS.each do |retailer_key|
-      self.retailers.create(name: retailer_key.gsub(/ Link$/, ''), link: hash[retailer_key])
+      next unless hash[retailer_key]
+      retailer = self.retailers.create(name: retailer_key.gsub(/ Link$/, ''), link: hash[retailer_key])
+      retailer.is_visible = true
+      retailer.save!
     end
   end
 end
