@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
   before_action :redirect_unless_admin, except: [:home, :about, :contact]
 
   def home
-    @publication = Publication.all.select { |p| p.is_visible }.first
+    @publication = Publication.all.sort { |a, b| a.sort_order(b) }.select { |p| p.is_visible }.last
     @blog_post = BlogPost.all.select { |b| b.is_visible }.first
     @custom_content = HomePageContent.all.first
     @facebook_metadata = {
