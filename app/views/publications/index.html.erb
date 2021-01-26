@@ -13,7 +13,15 @@
     No publications have been added yet.
   </div>
 <% else %>
+  <% skip_separator = false %>
   <% @contents.sort { |a, b| a.sort_order(b) }.each do |publication| %>
+    <% if skip_separator %>
+      <div class="center">
+        <%= image_tag "separator.png" %>
+      </div>
+    <% else %>
+      <% skip_separator = true %>
+    <% end %>
     <% next unless publication.is_visible || logged_in_as_admin? %>
     <%= render 'publication', object: publication %>
   <% end %>

@@ -29,7 +29,7 @@ class Publication < ApplicationRecord
     other_index = other.sort_index || 0
     raise "Classes do not match!" if self_index.class != other_index.class
     return other_index <=> self_index if self_index != other_index
-    other.created_at <=> self.created_at
+    other.publish_date <=> self.publish_date
   end
 
   RETAILER_LINK_KEYS = [

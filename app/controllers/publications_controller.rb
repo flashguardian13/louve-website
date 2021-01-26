@@ -1,6 +1,10 @@
 require 'csv'
 
 class PublicationsController < ContentsController
+  def index
+    @contents = model_class.all.sort { |a, b| a.sort_order(b) }
+  end
+
   def show
     @content = model_class.find(params[:id])
   end

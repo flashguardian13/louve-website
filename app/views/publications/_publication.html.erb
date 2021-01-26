@@ -1,75 +1,81 @@
 <div class="publication-container <%= object.is_visible ? '' : 'container-invisible' %>">
   <input type="radio" name="read-more-radios" class="read-more-state" id="post-<%= object.id %>" />
-  <table>
-    <tr>
-      <td>
-        <div class="publication-image image-container">
-          <% if object.image %>
-            <%= image_tag(object.image) %>
-          <% else %>
-            No image found.
-          <% end %>
-        </div>
 
-        <div class="publication-admin-links">
-          <% if object.persisted? && logged_in_as_admin? %>
-            <% if object.is_visible %>
-              <%= link_to 'Hide', publication_path(object, publication: {is_visible: false}), method: :patch, class: 'hide-publication-link' %>
-            <% else %>
-              <%= link_to 'Show', publication_path(object, publication: {is_visible: true}), method: :patch, class: 'show-publication-link' %>
-            <% end %>
-            <%= link_to 'Edit', edit_publication_path(object), class: 'edit-publication-link' %>
-            <%= link_to 'Delete', publication_path(object), method: :delete, class: 'delete-publication-link',
-              data: { confirm: 'Really delete this publication?' } %>
-          <% end %>
-        </div>
-      </td>
-      <td>
-        <div class="publication-content">
-          <div class="publication-title">
-            <%= object.title || 'Title of the Book' %>
-          </div>
+  <div class="publication-image image-container">
+    <% if object.image %>
+      <%= image_tag(object.image) %>
+    <% else %>
+      No image found.
+    <% end %>
+  </div>
 
-          <div class="publication-short-description">
-            <%= object.short_description.bbcode_to_html.html_safe rescue object.short_description %>
-          </div>
+  <div class="publication-admin-links">
+    <% if object.persisted? && logged_in_as_admin? %>
+      <% if object.is_visible %>
+        <%= link_to 'Hide', publication_path(object, publication: {is_visible: false}), method: :patch, class: 'hide-publication-link' %>
+      <% else %>
+        <%= link_to 'Show', publication_path(object, publication: {is_visible: true}), method: :patch, class: 'show-publication-link' %>
+      <% end %>
+      <%= link_to 'Edit', edit_publication_path(object), class: 'edit-publication-link' %>
+      <%= link_to 'Delete', publication_path(object), method: :delete, class: 'delete-publication-link',
+        data: { confirm: 'Really delete this publication?' } %>
+    <% end %>
+  </div>
 
-          <div class="read-more-hidden">
-            <div class="publication-long-description">
-              <%= object.long_description.bbcode_to_html.html_safe rescue object.long_description %>
-            </div>
+  <div class="publication-title">
+    <%= object.title || 'Title of the Book' %>
+  </div>
 
-            <div class="publication-reviews">
-              <% if object.reviews.empty? %>
-                No reviews found.<br/>
-              <% else %>
-                <% object.reviews.each do |review| %>
-                  <%= render 'reviews/review', object: review %><br/>
-                <% end %>
-              <% end %>
-              <% if object.persisted? && logged_in_as_admin? %>
-                <%= link_to 'Add review', new_publication_review_path(object), class: 'add-review-link' %>
-              <% end %>
-            </div>
-          </div>
+  <div class="publisher-info">
+    <strong>Contributions:</strong> <%= object.credits %><br/>
+    <% if object.publisher.match(/\n/) %>
+      <strong>Publishers:</strong>
+      <% pairs = [object.publisher.split(/\n/), object.publisher_url.split(/\n/)].transpose %>
+      <% links = pairs.map { |pub, url| link_to(pub.strip , url, class: 'publisher-link') } %>
+      <%= links.join(', ').html_safe %><br/>
+    <% else %>
+      <strong>Publisher:</strong> <%= link_to object.publisher, object.publisher_url, class: 'publisher-link' %><br/>
+    <% end %>
+    <strong>Publication Date:</strong> <%= object.publish_date.strftime('%B %-d, %Y') %>
+  </div>
 
-          <div class="publication-retailers">
-            <% if object.retailers.empty? %>
-              No retailers found.<br/>
-            <% else %>
-              Available at:
-              <% object.retailers.each do |retailer| %>
-                <%= render 'retailers/retailer', object: retailer %>
-              <% end %>
-              <br/>
-            <% end %>
-            <% if object.persisted? && logged_in_as_admin? %>
-              <%= link_to 'Add retailer', new_publication_retailer_path(object), class: 'add-retailer-link' %>
-            <% end %>
-          </div>
-        </div>
-      </td>
-    </tr>
-  </table>
+  <div class="publication-short-description">
+    <%= object.short_description.bbcode_to_html.html_safe rescue object.short_description %>
+  </div>
+
+  <div class="read-more-hidden">
+    <div class="publication-long-description">
+      <%= object.long_description.bbcode_to_html.html_safe rescue object.long_description %>
+    </div>
+
+    <div class="publication-reviews">
+      <% if object.reviews.any? %>
+        <br/>
+        <% object.reviews.each do |review| %>
+          <%= render 'reviews/review', object: review %><br/>
+        <% end %>
+      <% end %>
+      <% if object.persisted? && logged_in_as_admin? %>
+        <br/>
+        <%= link_to 'Add review', new_publication_review_path(object), class: 'add-review-link' %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="publication-retailers">
+    <% if object.retailers.empty? %>
+      No retailers found.<br/>
+    <% else %>
+      <strong>Available at:</strong>
+      <% object.retailers.each do |retailer| %>
+        <%= render 'retailers/retailer', object: retailer %>
+      <% end %>
+      <br/>
+    <% end %>
+    <% if object.persisted? && logged_in_as_admin? %>
+      <%= link_to 'Add retailer', new_publication_retailer_path(object), class: 'add-retailer-link' %>
+    <% end %>
+  </div>
+
   <label for="post-<%= object.id %>" class="read-more-trigger">Show more</label>
 </div>

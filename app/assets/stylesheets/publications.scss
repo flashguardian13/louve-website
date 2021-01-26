@@ -13,38 +13,69 @@
 }
 
 .publication-container {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  .publication-image img {
-    @include allow-transitions;
-    width: 170px;
-    height: auto;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto auto auto auto auto;
+  grid-gap: 10px;
+  grid-template-areas:
+    "image title"
+    "image publisher"
+    "image summary"
+    "image hidden"
+    "image reveal"
+    "admin retailers";
+  .publication-image {
+    grid-area: image;
+    align-self: center;
+    img {
+      @include allow-transitions;
+      width: 170px;
+      height: auto;
+    }
   }
   .publication-admin-links {
+    grid-area: admin;
+    justify-self: center;
+  }
+  .publication-title {
+    grid-area: title;
+    font-weight: bold;
+    font-size: 2em;
     text-align: center;
   }
-  .publication-content {
-    width: $min-app-width - 340px;
-    .publication-title {
-      margin: 10px;
-      font-weight: bold;
-      font-size: 2em;
-      text-align: center;
-    }
-    .publication-short-description {
-      margin: 10px;
-    }
-    .publication-long-description {
-      margin: 10px;
-    }
+  .publisher-info {
+    grid-area: publisher;
+  }
+  .publication-short-description {
+    grid-area: summary;
   }
   .read-more-hidden {
+    grid-area: hidden;
     @include allow-transitions;
     -webkit-transform: scaleY(0);
     -ms-transform: scaleY(0);
     transform: scaleY(0);
     max-height: 0px;
     overflow: hidden;
+    .publication-long-description {
+    }
+    .publication-reviews {
+    }
+  }
+  .publication-retailers {
+    grid-area: retailers;
+  }
+  .read-more-trigger {
+    grid-area: reveal;
+    @include allow-transitions;
+    background-color: rgba(64, 128, 256, 0.15);
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    padding: 10px 0px;
+    max-height: 1.1em;
+    justify-self: center;
+    align-self: center;
   }
 }
 
@@ -59,11 +90,11 @@
   overflow: hidden;
 }
 
-.read-more-state:checked ~ table .publication-image img {
+.read-more-state:checked ~ .publication-image img {
   width: 340px;
 }
 
-.read-more-state:checked ~ table .read-more-hidden {
+.read-more-state:checked ~ .read-more-hidden {
   -webkit-transform: scaleY(1);
   -ms-transform: scaleY(1);
   transform: scaleY(1);
@@ -77,9 +108,7 @@
   background-color: rgba(64, 128, 256, 0.15);
   cursor: pointer;
   text-align: center;
-  min-width: $min-app-width;
   width: 100%;
-  max-width: $max-app-width;
   padding: 10px 0px;
   max-height: 1.1em;
   overflow: hidden;

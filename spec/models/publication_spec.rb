@@ -214,9 +214,9 @@ RSpec.describe Publication, type: :model do
     end
 
     context 'when the sort indices are equal' do
-      it 'is based on creation date' do
-        allow(@publication1).to receive(:created_at).and_return(1000)
-        allow(@publication2).to receive(:created_at).and_return(1001)
+      it 'is based on publish date' do
+        allow(@publication1).to receive(:publish_date).and_return(1000)
+        allow(@publication2).to receive(:publish_date).and_return(1001)
         @publication1.sort_index = 2
         @publication2.sort_index = 2
         expect(@publication1.sort_order(@publication2)).to be > 0
