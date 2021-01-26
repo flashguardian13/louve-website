@@ -3,8 +3,8 @@ class StaticPagesController < ApplicationController
 
   def home
     @publication = Publication.all.sort { |a, b| a.sort_order(b) }.select { |p| p.is_visible }.last
-    @blog_post = BlogPost.all.select { |b| b.is_visible }.first
-    @custom_content = HomePageContent.all.first
+    @blog_post = BlogPost.all.select { |b| b.is_visible }.last
+    @custom_content = HomePageContent.all.last
     @facebook_metadata = {
       # 'fb:app_id' => 'APP_ID_HERE', <-- Find this value in your App Dashboard. Populate based on environment.
       'og:url' => root_url,
@@ -16,11 +16,11 @@ class StaticPagesController < ApplicationController
   end
 
   def edit_home_content
-    @custom_content = HomePageContent.all.first || HomePageContent.new
+    @custom_content = HomePageContent.all.last || HomePageContent.new
   end
 
   def update_home_content
-    @custom_content = HomePageContent.all.first || HomePageContent.new(home_content_params)
+    @custom_content = HomePageContent.all.last || HomePageContent.new(home_content_params)
     if params[:commit] == 'Preview'
       @custom_content.assign_attributes(home_content_params)
       render 'edit_home_content'
@@ -32,7 +32,7 @@ class StaticPagesController < ApplicationController
   end
 
   def destroy_home_content
-    custom_content = HomePageContent.all.first
+    custom_content = HomePageContent.all.last
     custom_content.destroy
     redirect_to action: :home, refresh: true
   end
