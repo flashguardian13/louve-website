@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   patch  '/update_home_content',  to: 'static_pages#update_home_content'
   delete '/destroy_home_content', to: 'static_pages#destroy_home_content'
 
+  get  '/import_publications', to: 'publications#import'
+  post '/import_publications', to: 'publications#import_from_csv'
+
   get  '/login',   to: 'sessions#new'
   post '/login',   to: 'sessions#create'
   get  '/logout',  to: 'sessions#destroy'

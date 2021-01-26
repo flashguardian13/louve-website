@@ -5,6 +5,7 @@
     Publications surrounded by a <span class="container-invisible">dotted cyan border</span> are not publicly visible.
   </div>
   <%= link_to 'Add New Publication', new_publication_path, id: 'new-publication-link' %>
+  <%= link_to 'Import Publications', import_publications_path, id: 'import-publications-link' %>
 <% end %>
 
 <% if @contents.empty? %>
@@ -12,7 +13,15 @@
     No publications have been added yet.
   </div>
 <% else %>
+  <% skip_separator = false %>
   <% @contents.sort { |a, b| a.sort_order(b) }.each do |publication| %>
+    <% if skip_separator %>
+      <div class="center">
+        <%= image_tag "separator.png" %>
+      </div>
+    <% else %>
+      <% skip_separator = true %>
+    <% end %>
     <% next unless publication.is_visible || logged_in_as_admin? %>
     <%= render 'publication', object: publication %>
   <% end %>

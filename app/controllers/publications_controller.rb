@@ -1,6 +1,30 @@
+require 'csv'
+
 class PublicationsController < ContentsController
+  def index
+    @contents = model_class.all.sort { |a, b| a.sort_order(b) }
+  end
+
   def show
     @content = model_class.find(params[:id])
+  end
+
+  def import
+    redirect_unless_admin
+  end
+
+  def import_from_csv
+    csv_string = params.permit(:publications_csv)[:publications_csv]
+    csv = CSV.parse(csv_string, headers: true)
+    hash_table = csv.map { |x| x.to_h }
+
+    Publication.destroy_all
+
+    hash_table.each do |publication_hash|
+      Publication.create().update_from_hash(publication_hash)
+    end
+
+    redirect_to action: :index, refresh: true
   end
 
   private
