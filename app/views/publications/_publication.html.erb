@@ -23,7 +23,7 @@
   </div>
 
   <div class="publication-title">
-    <%= object.title || 'Title of the Book' %>
+    <%= link_to object.title || 'Title of the Book', publication_path(object), class: 'show-publication-link' %>
   </div>
 
   <div class="publisher-info">

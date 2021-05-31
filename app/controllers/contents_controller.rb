@@ -1,5 +1,5 @@
 class ContentsController < ApplicationController
-  before_action :redirect_unless_admin, except: [:index]
+  before_action :redirect_unless_admin, except: [:index, :show]
 
   def index
     @contents = model_class.all
