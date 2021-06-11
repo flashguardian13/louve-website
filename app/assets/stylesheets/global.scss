@@ -130,8 +130,8 @@ div.social-media-container {
     margin: 3px 10px;
     padding: 0px 5px;
     display: grid;
-    grid-template-columns: 60px 30px auto;
-    grid-template-areas: "twitter email facebook";
+    grid-template-columns: 60px 90px 30px auto;
+    grid-template-areas: "twitter mastodon email facebook";
     column-gap: 5px;
     justify-content: center;
     align-content: center;
@@ -145,6 +145,25 @@ div.social-media-container {
       iframe {
         width: 60px;
         max-height: 20px;
+      }
+    }
+    .mastodon-container {
+      grid-area: mastodon;
+      align-self: center;
+      div {
+        height: 24px;
+        border-radius: 5px;
+        background-color: $nav-link-bg-color;
+        &:hover {
+          background-color: $nav-hover-link-bg-color;
+        }
+        &:active {
+          background-color: $nav-active-link-bg-color;
+        }
+        img {
+          padding: 5px;
+          height: 20px;
+        }
       }
     }
     .email-share-container {

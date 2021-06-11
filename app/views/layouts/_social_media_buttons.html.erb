@@ -3,6 +3,13 @@
     <div class="twitter-container">
       <a class="twitter-share-button" data-url="<%= object %>" href="https://twitter.com/intent/tweet" data-text="Rhiannon Louve Official Website">Share on Twitter</a>
     </div>
+    <div class="mastodon-container">
+      <%= link_to "https://mastodon.social/@rhiannonlouve", { target: '_blank', rel: 'me', id: 'mastodon-link-button' } do %>
+        <div>
+          <%= image_tag('mastodon-logotype-full-reversed.png') %>
+        </div>
+      <% end %>
+    </div>
     <div class="email-share-container">
       <%= link_to image_tag('email_icon.png'), "mailto:?subject=#{u "Shared content from Rhiannon Louve's website"}&body=#{u "I would like to share this with you:\n\n#{object}\n\nPlease take a look when you can. Thanks!"}", { target: '_blank', id: 'email-share-button' } %>
     </div>
